@@ -8,8 +8,8 @@ import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [userData, setUserData] = React.useState({
-    token: undefined,
-    user: undefined,
+    token: null,
+    user: null,
   });
 
   React.useEffect(() => {
