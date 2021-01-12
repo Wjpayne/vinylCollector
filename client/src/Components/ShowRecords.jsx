@@ -99,16 +99,11 @@ export default function ShowRecords() {
   };
 
   const fetchData = async () => {
-
     const token = await axios.get("users/userstoken", authToken);
     setUserData(token.data);
 
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
-
-    const user = await axios.get()
-
-
   };
 
   React.useEffect(() => {
@@ -122,7 +117,6 @@ export default function ShowRecords() {
     newRecords.rating,
     newRecords.genre,
     newRecords.description,
-    
   ]);
 
   // delete records
