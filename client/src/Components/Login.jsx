@@ -91,6 +91,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
+        
       });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/profile");
