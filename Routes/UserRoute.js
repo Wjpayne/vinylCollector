@@ -105,7 +105,10 @@ router.post("/tokenIsValid", async (req, res) => {
 
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
+
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   res.json({
+    token, 
     displayName: user.displayName,
     id: user._id,
   });
