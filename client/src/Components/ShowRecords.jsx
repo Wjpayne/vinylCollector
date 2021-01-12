@@ -62,7 +62,7 @@ export default function ShowRecords() {
 
   //set state for showing records in database and opening/closing modals
 
-  const [newRecords, newRecordData] = React.useState([]);
+  // const [newRecords, setUserData] = React.useState([]);
 
   const [editOpen, handleEditModal] = React.useState(false);
 
@@ -103,7 +103,7 @@ export default function ShowRecords() {
     // setUserData(token.data);
 
     const result = await axios.get("record/get", authToken);
-    newRecordData(result.data);
+    setUserData(result.data);
   };
 
   React.useEffect(() => {
@@ -111,29 +111,29 @@ export default function ShowRecords() {
 
     console.log("data");
   }, [
-    newRecords._id,
-    newRecords.title,
-    newRecords.artist,
-    newRecords.rating,
-    newRecords.genre,
-    newRecords.description,
+    userData._id,
+    userData.title,
+    userData.artist,
+    userData.rating,
+    userData.genre,
+    userData.description,
   ]);
 
   // delete records
 
   const deleteRecord = async (_id) => {
     const deleteRecords = {
-      _id: newRecords._id,
-      title: newRecords.title,
-      artist: newRecords.artist,
-      rating: newRecords.rating,
-      genre: newRecords.genre,
-      description: newRecords.description,
+      _id: userData._id,
+      title: userData.title,
+      artist: userData.artist,
+      rating: userData.rating,
+      genre: userData.genre,
+      description: userData.description,
     };
 
     await axios.delete("/record/" + _id, deleteRecords).then((result) => {
-      const refresh = newRecords.filter((result) => result._id !== _id);
-      newRecordData(refresh);
+      const refresh = userData.filter((result) => result._id !== _id);
+      setUserData(refresh);
     });
   };
 
@@ -156,9 +156,9 @@ export default function ShowRecords() {
       <AddRecord
         isAddModalOpen={addModalOpen}
         handleIsAddModalClose={handleCloseAddModal}
-        addNewRecords={newRecords}
+        addNewRecords={userData}
         handleIsAddModalOpen={handleAddModal}
-        refreshRecordData={newRecordData}
+        refreshRecordData={setUserData}
       />
       <EditRecords
         editModalOpen={editOpen}
@@ -176,7 +176,7 @@ export default function ShowRecords() {
         editDescriptionState={setDescription}
         editUrl={url}
         editFetchData={fetchData}
-        editNewRecordData={newRecordData}
+        editNewRecordData={setUserData}
       />
       <Button
         className={classes.addButton}
@@ -187,8 +187,8 @@ export default function ShowRecords() {
 
       <div className={classes.cardsContainer}>
         <Grid container spacing={10} style={{ padding: "24px" }}>
-          {newRecords.length > 0 &&
-            newRecords.map((element) => (
+          {userData.length > 0 &&
+            userData.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
                 <Card className={classes.root} key={element._id}>
                   <CardContent className={classes.card}>
