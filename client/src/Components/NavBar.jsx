@@ -180,10 +180,10 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
 
   const logOut = () => {
     setUserData({
-      token: "",
+      token: false,
       user: "",
     });
-    localStorage.setItem("auth-token", "");
+    localStorage.setItem("auth-token", false);
   };
 
   return (
