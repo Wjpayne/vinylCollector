@@ -11,8 +11,7 @@ import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
 import UserContext from "./UserContext";
-import queryString from 'query-string'
-
+import queryString from "query-string";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -83,9 +82,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const {userData, setUserData } = React.useContext(UserContext);
-
-  
+  const { userData, setUserData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -101,32 +98,31 @@ export default function ShowRecords() {
     handleEditModal();
   };
 
-
-
   const fetchData = async () => {
+
+    const token = await axios.get("users/userstoken", authToken);
+    setUserData(token.data);
+
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
 
-    const token = await axios.get("users/userstoken", authToken);
-    setUserData(token.data)
+    const user = await axios.get()
+
+
   };
 
-
   React.useEffect(() => {
-
-     
-
     fetchData();
 
     console.log("data");
-  }, [newRecords._id,
-      newRecords.title,
-      newRecords.artist,
-      newRecords.rating,
-      newRecords.genre,
-      newRecords.description,
-      userData._id
-  
+  }, [
+    newRecords._id,
+    newRecords.title,
+    newRecords.artist,
+    newRecords.rating,
+    newRecords.genre,
+    newRecords.description,
+    
   ]);
 
   // delete records

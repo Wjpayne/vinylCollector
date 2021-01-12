@@ -77,7 +77,6 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
 
   //get Context and history
 
-  
   const { setUserData } = React.useContext(UserContext);
 
   //functions to handle sumbit for login
@@ -88,13 +87,11 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
     try {
       const loginUser = { email, password };
       const loginRes = await axios.post("/users/login", loginUser, authToken);
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
+
       localStorage.setItem("auth-token", loginRes.data.token);
-      
-      
+
+      const token = await axios.get("users/userstoken", authToken);
+      setUserData(token.data);
 
       history.push("/profile");
     } catch (err) {
