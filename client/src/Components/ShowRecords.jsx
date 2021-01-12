@@ -106,6 +106,9 @@ export default function ShowRecords() {
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
+
+    const token = await axios.get("users/userstoken", authToken);
+    setUserData(token.data)
   };
 
 
