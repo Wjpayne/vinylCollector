@@ -182,8 +182,8 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
 
 
     setUserData({
-      token: false,
-      user: "",
+      token: null,
+      user: null,
     });
     localStorage.clear()
   };

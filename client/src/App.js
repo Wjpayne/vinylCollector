@@ -17,7 +17,7 @@ function App() {
       let token = localStorage.getItem("auth-token");
       if (token === null) {
         localStorage.setItem("auth-token", "");
-        token = "";
+        token = null;
       }
       const tokenRes = await axios.post(
         "/users/tokenIsValid",
