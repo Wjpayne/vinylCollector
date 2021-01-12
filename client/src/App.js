@@ -25,7 +25,7 @@ function App() {
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await axios.get("/users", {
+        const userRes = await axios.get("/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
