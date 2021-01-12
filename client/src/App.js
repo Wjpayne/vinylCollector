@@ -8,8 +8,8 @@ import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [userData, setUserData] = React.useState({
-    token: "",
-    user: "",
+    token: undefined,
+    user: undefined,
   });
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await axios.get("/", {
+        const userRes = await axios.get("/users", {
           headers: { "x-auth-token": token },
         });
         setUserData({
