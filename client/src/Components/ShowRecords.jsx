@@ -105,14 +105,11 @@ export default function ShowRecords() {
     newRecordData(result.data);
   };
 
-  const fetchUserData = async () => {
-    const users = await axios.get("/users", authToken);
-    setUserData(users.data);
-  }
+
   React.useEffect(() => {
 
     fetchData();
-    fetchUserData();
+
     console.log("data");
   }, [newRecords._id,
       newRecords.title,
