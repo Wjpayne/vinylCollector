@@ -62,7 +62,7 @@ export default function ShowRecords() {
 
   //set state for showing records in database and opening/closing modals
 
-  // const [newRecords, setUserData] = React.useState([]);
+  const [newRecords, newRecordData] = React.useState([]);
 
   const [editOpen, handleEditModal] = React.useState(false);
 
@@ -82,7 +82,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const { userData, setUserData } = React.useContext(UserContext);
+  // const { userData, setUserData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -99,42 +99,42 @@ export default function ShowRecords() {
   };
 
   const fetchData = async () => {
-    const token = await axios.get("/users", authToken);
-    setUserData(token.data);
 
     const result = await axios.get("record/get", authToken);
-    setUserData(result.data);
+    newRecordData(result.data);
+
+
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, [userData._id,
-      userData.title,
-      userData.artist,
-      userData.rating,
-      userData.genre,
-      userData.description,
-      userData.token
-  
+  }, [
+    newRecords._id,
+    newRecords.title,
+    newRecords.artist,
+    newRecords.rating,
+    newRecords.genre,
+    newRecords.description,
+    
   ]);
 
   // delete records
 
   const deleteRecord = async (_id) => {
     const deleteRecords = {
-      _id: userData._id,
-      title: userData.title,
-      artist: userData.artist,
-      rating: userData.rating,
-      genre: userData.genre,
-      description: userData.description,
+      _id: newRecords._id,
+      title: newRecords.title,
+      artist: newRecords.artist,
+      rating: newRecords.rating,
+      genre: newRecords.genre,
+      description: newRecords.description,
     };
 
     await axios.delete("/record/" + _id, deleteRecords).then((result) => {
-      const refresh = userData.filter((result) => result._id !== _id);
-      setUserData(refresh);
+      const refresh = newRecords.filter((result) => result._id !== _id);
+      newRecordData(refresh);
     });
   };
 
@@ -157,9 +157,9 @@ export default function ShowRecords() {
       <AddRecord
         isAddModalOpen={addModalOpen}
         handleIsAddModalClose={handleCloseAddModal}
-        addNewRecords={userData}
+        addNewRecords={newRecords}
         handleIsAddModalOpen={handleAddModal}
-        refreshRecordData={setUserData}
+        refreshRecordData={newRecordData}
       />
       <EditRecords
         editModalOpen={editOpen}
@@ -177,7 +177,7 @@ export default function ShowRecords() {
         editDescriptionState={setDescription}
         editUrl={url}
         editFetchData={fetchData}
-        editNewRecordData={setUserData}
+        editNewRecordData={newRecordData}
       />
       <Button
         className={classes.addButton}
@@ -188,8 +188,8 @@ export default function ShowRecords() {
 
       <div className={classes.cardsContainer}>
         <Grid container spacing={10} style={{ padding: "24px" }}>
-          {userData.length > 0 &&
-            userData.map((element) => (
+          {newRecords.length > 0 &&
+            newRecords.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
                 <Card className={classes.root} key={element._id}>
                   <CardContent className={classes.card}>
