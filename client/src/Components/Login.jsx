@@ -88,13 +88,11 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
     try {
       const loginUser = { email, password };
       const loginRes = await axios.post("/users/login", loginUser, authToken);
-
-      localStorage.setItem("auth-token", loginRes.data.token);
-
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
+      localStorage.setItem("auth-token", loginRes.data.token);
       
       
 
