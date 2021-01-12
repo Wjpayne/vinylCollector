@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
-import UserContext from "./UserContext";
+
 import queryString from "query-string";
 
 const recordFormStyles = makeStyles((theme) => ({
@@ -62,7 +62,7 @@ export default function ShowRecords() {
 
   //set state for showing records in database and opening/closing modals
 
-  const [newRecords, newRecordData] = React.useState([]);
+  // const [newRecords, newRecordData] = React.useState([]);
 
   const [editOpen, handleEditModal] = React.useState(false);
 
@@ -82,7 +82,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  // const { userData, setUserData } = React.useContext(UserContext);
+  const { newRecords, newRecordData } = React.useContext(UserContext);
 
   //functions to control state
 
