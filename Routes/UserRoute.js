@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", auth, async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -103,7 +103,7 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
-router.get("/", auth, async (req, res) => {
+router.get("/userstoken", auth, async (req, res) => {
   const user = await User.findById(req.user);
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);

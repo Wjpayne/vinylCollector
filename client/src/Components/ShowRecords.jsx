@@ -111,7 +111,7 @@ export default function ShowRecords() {
 
   React.useEffect(() => {
 
-    let parsed = 
+     
 
     fetchData();
 
