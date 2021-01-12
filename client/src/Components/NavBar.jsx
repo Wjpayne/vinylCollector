@@ -243,7 +243,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                 onClick={logOut}
                 className={classes.login}
               >
-                Log out {userData.user.displayName}
+                Log out {userData.displayName}
               </Button>
             ) : (
               <>
