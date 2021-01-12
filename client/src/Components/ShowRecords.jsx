@@ -10,7 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
-import UserContext from "./UserContext";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -106,7 +105,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, [userData.token]);
+  }, []);
 
   // delete records
 
