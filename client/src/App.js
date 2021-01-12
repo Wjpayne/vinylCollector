@@ -12,16 +12,12 @@ function App() {
     user: undefined,
   });
 
-  const [newRecords, newRecordData] = React.useState([])
-
-  
-
   React.useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
       if (token === null) {
-        localStorage.setItem("auth-token", false);
-        token = false;
+        localStorage.setItem("auth-token", "");
+        token = "";
       }
       const tokenRes = await axios.post(
         "/users/tokenIsValid",
@@ -44,7 +40,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <UserContext.Provider value={{ userData: [userData, setUserData], newRecords: [newRecords, newRecordData] }}>
+      <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>
             <Route exact path="/" component={Main} />

@@ -11,7 +11,6 @@ import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
 
-import queryString from "query-string";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +61,7 @@ export default function ShowRecords() {
 
   //set state for showing records in database and opening/closing modals
 
-  // const [newRecords, newRecordData] = React.useState([]);
+  const [newRecords, newRecordData] = React.useState([]);
 
   const [editOpen, handleEditModal] = React.useState(false);
 

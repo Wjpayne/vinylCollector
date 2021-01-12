@@ -185,7 +185,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
       token: false,
       user: "",
     });
-    localStorage.setItem("auth-token", false);
+    localStorage.clear()
   };
 
   return (
