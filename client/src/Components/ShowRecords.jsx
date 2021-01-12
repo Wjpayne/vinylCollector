@@ -11,6 +11,7 @@ import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
 import UserContext from "./UserContext";
+import queryString from 'query-string'
 
 
 const recordFormStyles = makeStyles((theme) => ({
@@ -84,6 +85,8 @@ export default function ShowRecords() {
 
   const {userData, setUserData } = React.useContext(UserContext);
 
+  
+
   //functions to control state
 
   const handleAddModalOpen = () => {
@@ -107,6 +110,8 @@ export default function ShowRecords() {
 
 
   React.useEffect(() => {
+
+    let parsed = 
 
     fetchData();
 

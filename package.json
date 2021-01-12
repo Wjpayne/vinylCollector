@@ -9,7 +9,6 @@
     "server": "nodemon server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "client": "npm start --prefix client"
-
   },
   "keywords": [],
   "author": "",
@@ -21,12 +20,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.9"
+    "mongoose": "^5.11.9",
+    "query-string": "^6.13.8"
   },
-  "engines" : {
+  "engines": {
     "node": "14.13.1"
   }
-
- 
- 
 }
