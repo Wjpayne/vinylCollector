@@ -110,14 +110,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, [
-    userData._id,
-    userData.title,
-    userData.artist,
-    userData.rating,
-    userData.genre,
-    userData.description,
-  ]);
+  }, []);
 
   // delete records
 
