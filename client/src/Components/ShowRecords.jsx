@@ -80,7 +80,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const { userData } = React.useContext(UserContext);
+
 
   //functions to control state
 
@@ -98,7 +98,7 @@ export default function ShowRecords() {
 
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
-    newRecordData(result.data);
+    newRecordData(result.data.userId);
   };
 
   React.useEffect(() => {
