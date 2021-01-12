@@ -180,11 +180,12 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
 
   const logOut = async () => {
 
+
     setUserData({
-      token: null,
+      token: false,
       user: "",
     });
-    localStorage.setItem("auth-token", null);
+    localStorage.setItem("auth-token", false);
   };
 
   return (
@@ -243,7 +244,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                 onClick={logOut}
                 className={classes.login}
               >
-                Log out {userData.displayName}
+                Log out {userData.user.displayName}
               </Button>
             ) : (
               <>

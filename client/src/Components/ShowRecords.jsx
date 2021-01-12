@@ -103,20 +103,21 @@ export default function ShowRecords() {
     // setUserData(token.data);
 
     const result = await axios.get("record/get", authToken);
-    setUserData(result.data);
+    setUserData(
+      {record: result.data});
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, [userData._id,
-      userData.title,
-      userData.artist,
-      userData.rating,
-      userData.genre,
-      userData.description,
-      userData.token
+  }, [userData.record._id,
+      userData.record.title,
+      userData.record.artist,
+      userData.record.rating,
+      userData.record.genre,
+      userData.record.description,
+      userData.user.token
   
   ]);
 
@@ -124,12 +125,12 @@ export default function ShowRecords() {
 
   const deleteRecord = async (_id) => {
     const deleteRecords = {
-      _id: userData._id,
-      title: userData.title,
-      artist: userData.artist,
-      rating: userData.rating,
-      genre: userData.genre,
-      description: userData.description,
+      _id: userData.record._id,
+      title: userData.record.title,
+      artist: userData.record.artist,
+      rating: userData.record.rating,
+      genre: userData.record.genre,
+      description: userData.record.description,
     };
 
     await axios.delete("/record/" + _id, deleteRecords).then((result) => {
@@ -188,8 +189,8 @@ export default function ShowRecords() {
 
       <div className={classes.cardsContainer}>
         <Grid container spacing={10} style={{ padding: "24px" }}>
-          {userData.length > 0 &&
-            userData.map((element) => (
+          {userData.record.length > 0 &&
+            userData.record.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
                 <Card className={classes.root} key={element._id}>
                   <CardContent className={classes.card}>
