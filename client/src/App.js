@@ -15,13 +15,13 @@ function App() {
   React.useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
-      if (token === false) {
+      if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
       }
       const tokenRes = await axios.post(
         "/users/tokenIsValid",
-        false,
+        null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
