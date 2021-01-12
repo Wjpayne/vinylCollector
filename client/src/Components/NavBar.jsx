@@ -181,10 +181,10 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   const logOut = async () => {
 
     setUserData({
-      token: false,
+      token: null,
       user: "",
     });
-    localStorage.setItem("auth-token", false);
+    localStorage.setItem("auth-token", null);
   };
 
   return (
