@@ -179,13 +179,13 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   const { userData, setUserData } = React.useContext(UserContext);
 
   const logOut = async () => {
-
+    localStorage.clear();
 
     setUserData({
       token: null,
       user: null,
     });
-    localStorage.clear()
+    
   };
 
   return (
@@ -210,7 +210,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
             THE BLAST BEAT
           </Button>
           {userData.user ? (
-              <>
+            <>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
@@ -223,14 +223,12 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                   }}
                   inputProps={{ "aria-label": "search" }}
                 />
-
               </div>
 
-              <Button component = {Link} to = "/search"className={classes.go}>GO</Button>
-              </>
-
-              
-          
+              <Button component={Link} to="/search" className={classes.go}>
+                GO
+              </Button>
+            </>
           ) : (
             <div></div>
           )}

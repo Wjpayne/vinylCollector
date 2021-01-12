@@ -11,7 +11,6 @@ import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
 
-
 const recordFormStyles = makeStyles((theme) => ({
   root: {
     height: "225px",
@@ -81,7 +80,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-
+  const { userData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -98,26 +97,15 @@ export default function ShowRecords() {
   };
 
   const fetchData = async () => {
-
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
-
-
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, [
-    newRecords._id,
-    newRecords.title,
-    newRecords.artist,
-    newRecords.rating,
-    newRecords.genre,
-    newRecords.description,
-    
-  ]);
+  }, [userData.token]);
 
   // delete records
 

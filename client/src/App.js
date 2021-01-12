@@ -37,7 +37,7 @@ function App() {
     console.log("check")
 
     checkLoggedIn();
-  }, []);
+  }, [userData.token]);
   return (
     <div className="App">
       <UserContext.Provider value={{ userData, setUserData }}>
