@@ -95,7 +95,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
         const loginRes = await axios.post("/users/login", loginUser, authToken);
         setUserData({
           token: loginRes.data.token,
-          user: loginRes.data,
+          user: loginRes.data.user,
         });
         localStorage.setItem("auth-token", loginRes.data.token);
         history.push("/profile");
@@ -145,7 +145,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
               Login
             </Typography>
 
-            <form className={classes.form} noValidate onSubmit={() => handleSubmit}>
+            <form className={classes.form} noValidate onSubmit={() =>handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"

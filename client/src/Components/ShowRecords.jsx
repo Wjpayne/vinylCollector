@@ -114,7 +114,7 @@ export default function ShowRecords() {
       });
       setUserData({
         token: userRes.data.token,
-        user: userRes.data
+        user: userRes.data.user
       });
       console.log(userRes.data)
     }
@@ -125,7 +125,7 @@ export default function ShowRecords() {
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
-    console.log(result.data);
+    console.log(result.data.userId);
   };
 
   React.useEffect(() => {
@@ -206,7 +206,7 @@ export default function ShowRecords() {
           {newRecords.length > 0 &&
             newRecords.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
-                <Card className={classes.root} key={element._id}>
+                <Card className={classes.root} key={element.userId}>
                   <CardContent className={classes.card}>
                     <Typography gutterBottom variant="h6">
                       {element.title}
