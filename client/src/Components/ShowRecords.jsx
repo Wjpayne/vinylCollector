@@ -99,26 +99,26 @@ export default function ShowRecords() {
 
   // see if user is logged in already, if not set a token and userData
 
-  // const checkLoggedIn = async () => {
-  //   let token = localStorage.getItem("auth-token");
-  //   if (token === null) {
-  //     localStorage.setItem("auth-token", "");
-  //     token = null;
-  //   }
-  //   const tokenRes = await axios.post("/users/tokenIsValid", null, {
-  //     headers: { "x-auth-token": token },
-  //   });
-  //   if (tokenRes.data) {
-  //     const userRes = axios.get("/users", {
-  //       headers: { "x-auth-token": token },
-  //     });
-  //     setUserData({
-  //       token: userRes.data.token,
-  //       user: userRes.data.userId
-  //     });
-  //     console.log(userRes.data)
-  //   }
-  // };
+  const checkLoggedIn = async () => {
+    let token = localStorage.getItem("auth-token");
+    if (token === null) {
+      localStorage.setItem("auth-token", "");
+      token = null;
+    }
+    const tokenRes = await axios.post("/users/tokenIsValid", null, {
+      headers: { "x-auth-token": token },
+    });
+    if (tokenRes.data) {
+      const userRes = axios.get("/users", {
+        headers: { "x-auth-token": token },
+      });
+      setUserData({
+        token: userRes.data.token,
+        user: userRes.data
+      });
+      console.log(userRes.data)
+    }
+  };
 
   //fetch record data
 
@@ -129,7 +129,7 @@ export default function ShowRecords() {
   };
 
   React.useEffect(() => {
-    // checkLoggedIn();
+    checkLoggedIn();
     fetchData();
 
     console.log("data");
