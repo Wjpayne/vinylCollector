@@ -21,7 +21,8 @@ import Button from "@material-ui/core/Button";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
-import { useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -178,19 +179,16 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   // useContext for userData
 
   const { userData, setUserData } = React.useContext(UserContext);
-  
-  const history = useHistory()
 
-  const logOut = () => {
-  
+  const history = useHistory();
 
+  const logOut = async () => {
     setUserData({
       token: undefined,
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
-    history.push("/")
-
+    history.push("/");
   };
 
   return (
@@ -215,7 +213,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
             THE BLAST BEAT
           </Button>
           {userData.user ? (
-              <>
+            <>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
@@ -228,14 +226,12 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                   }}
                   inputProps={{ "aria-label": "search" }}
                 />
-
               </div>
 
-              <Button component = {Link} to = "/search"className={classes.go}>GO</Button>
-              </>
-
-              
-          
+              <Button component={Link} to="/search" className={classes.go}>
+                GO
+              </Button>
+            </>
           ) : (
             <div></div>
           )}
@@ -243,11 +239,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {userData.user ? (
-              <Button
-                button
-                onClick={() => logOut()}
-                className={classes.login}
-              >
+              <Button button onClick={() => logOut()} className={classes.login}>
                 Log out {userData.user.displayName}
               </Button>
             ) : (
@@ -302,7 +294,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
             </ListItem>
           )}
           {userData.user ? (
-            <ListItem button   onClick={() => logOut()}>
+            <ListItem button onClick={() => logOut()}>
               <ListItemIcon>
                 {" "}
                 <PersonIcon />
