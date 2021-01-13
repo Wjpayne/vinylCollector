@@ -145,7 +145,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
               Login
             </Typography>
 
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} noValidate onSubmit={() => handleSubmit()}>
               <TextField
                 variant="outlined"
                 margin="normal"

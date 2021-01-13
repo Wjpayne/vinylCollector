@@ -21,6 +21,7 @@ import Button from "@material-ui/core/Button";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
+import { useHistory} from "react-router-dom"
 
 const drawerWidth = 240;
 
@@ -177,6 +178,8 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   // useContext for userData
 
   const { userData, setUserData } = React.useContext(UserContext);
+  
+  const history = useHistory()
 
   const logOut = () => {
   
@@ -186,6 +189,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
       user: undefined,
     });
     localStorage.setItem("auth-token", false);
+
   };
 
   return (
@@ -239,9 +243,8 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
           <div className={classes.sectionDesktop}>
             {userData.user ? (
               <Button
-                component={Link}
-                to="/"
-                onClick={logOut}
+                button
+                onClick={() => logOut()}
                 className={classes.login}
               >
                 Log out {userData.user.displayName}
@@ -298,7 +301,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
             </ListItem>
           )}
           {userData.user ? (
-            <ListItem button component={Link} to="/" onClick={logOut}>
+            <ListItem button   onClick={() => logOut()}>
               <ListItemIcon>
                 {" "}
                 <PersonIcon />
