@@ -35,8 +35,8 @@ function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({
-          token,
-          user: userRes.data,
+          token: userRes.data.token,
+          user: userRes.data.user
         });
       }
     };

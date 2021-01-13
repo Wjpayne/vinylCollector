@@ -97,7 +97,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
           token: loginRes.data.token,
           user: loginRes.data.user,
         });
-        console.log(token)
+        console.log(loginRes.data.token)
         localStorage.setItem("auth-token", loginRes.data.token);
         history.push("/profile");
       } catch (err) {
