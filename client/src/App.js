@@ -3,21 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Profile from "./Components/Profile";
 import Main from "./Components/Main";
 import UserContext from "./Components/UserContext";
-import axios from "axios";
 import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [userData, setUserData] = React.useState({
     token: null,
     user: null,
-    title: "",
-    artist: "",
-    rating: "",
-    genre: "",
-    description: "",
-
   });
-
 
   return (
     <div className="App">
@@ -26,7 +18,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/profile" component={Profile} />
-            <Route path = "/search" component = {SearchResults} />
+            <Route path="/search" component={SearchResults} />
           </Switch>
         </Router>
       </UserContext.Provider>

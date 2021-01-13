@@ -81,7 +81,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const { userData, setUserData } = React.useContext(UserContext);
+  const { setUserData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -95,14 +95,6 @@ export default function ShowRecords() {
 
   const handleIsEditModalClose = () => {
     handleEditModal();
-  };
-
-  //fetch record data
-
-  const fetchData = async () => {
-    const result = await axios.get("record/get", authToken);
-    newRecordData(result.data);
-    console.log(result.data)
   };
 
   // see if user is logged in already, if not set a token and userData
@@ -127,26 +119,20 @@ export default function ShowRecords() {
     }
   };
 
+  //fetch record data
+
+  const fetchData = async () => {
+    const result = await axios.get("record/get", authToken);
+    newRecordData(result.data);
+    console.log(result.data);
+  };
+
   React.useEffect(() => {
-  
     checkLoggedIn();
-    
-
-    console.log("data");
-  }, []);
-
-  React.useEffect(() => {
-  
     fetchData();
-    
 
     console.log("data");
   }, []);
-
-
-
-
-
 
   // delete records
 
