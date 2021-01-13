@@ -83,16 +83,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   //functions to handle sumbit for login
 
 
-  const tokenRes = await axios.post(
-    "/users/tokenIsValid",
-    null,
-    { headers: { "x-auth-token": token } }
-  );
-  if (tokenRes.data) {
-    const userRes = await axios.get("/users", {
-      headers: { "x-auth-token": token },
-    });
-  }
+
 
 
 
