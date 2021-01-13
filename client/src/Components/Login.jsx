@@ -83,6 +83,20 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   //functions to handle sumbit for login
 
 
+  const tokenRes = await axios.post(
+    "/users/tokenIsValid",
+    null,
+    { headers: { "x-auth-token": token } }
+  );
+  if (tokenRes.data) {
+    const userRes = await axios.get("/users", {
+      headers: { "x-auth-token": token },
+    });
+  }
+
+
+
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -90,6 +104,18 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
       try {
         const loginUser = { email, password };
         const loginRes = await axios.post("/users/login", loginUser, authToken);
+
+        const tokenRes = await axios.post(
+          "/users/tokenIsValid",
+          null,
+          { headers: { "x-auth-token": token } }
+        );
+        if (tokenRes.data) {
+          const userRes = await axios.get("/users", {
+            headers: { "x-auth-token": token },
+          });
+        }
+        
         setUserData({
           token: loginRes.data.token,
           user: loginRes.data.user,
