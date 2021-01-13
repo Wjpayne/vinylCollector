@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
+import UserContext from "./UserContext";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +81,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-
+  const [userData] = React.useContext(UserContext) 
 
   //functions to control state
 
@@ -98,14 +99,14 @@ export default function ShowRecords() {
 
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
-    newRecordData(result.data.userId);
+    newRecordData(result.data);
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, []);
+  }, [userData.token]);
 
   // delete records
 
