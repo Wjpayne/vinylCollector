@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
+import UserContext from "./Components/UserContext";
 
 
 const recordFormStyles = makeStyles((theme) => ({
@@ -80,6 +81,8 @@ export default function ShowRecords() {
   const [description, setDescription] = React.useState("");
 
   const [userId, setUserId] = React.useState("");
+
+  const { userData, setUserData } = React.useContext(UserContext);
 
 
   //functions to control state
