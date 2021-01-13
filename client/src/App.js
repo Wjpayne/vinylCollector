@@ -28,7 +28,7 @@ function App() {
         headers: { "x-auth-token": token },
       });
       setUserData({
-        token: userRes.data.token,
+        token,
         user: userRes.data,
       });
       console.log(userRes.data);
