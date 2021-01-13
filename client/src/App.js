@@ -10,6 +10,12 @@ function App() {
   const [userData, setUserData] = React.useState({
     token: null,
     user: null,
+    title: "",
+    artist: "",
+    rating: "",
+    genre: "",
+    description: "",
+
   });
 
   React.useEffect(() => {
