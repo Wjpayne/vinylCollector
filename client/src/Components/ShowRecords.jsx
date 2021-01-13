@@ -103,7 +103,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, []);
+  }, [newRecords.userId]);
 
   // delete records
 
