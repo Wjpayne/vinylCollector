@@ -114,9 +114,9 @@ export default function ShowRecords() {
       });
       setUserData({
         token: userRes.data.token,
-        user: userRes.data.userId
+        user: userRes.data
       });
-      console.log(userRes.data.userId)
+      console.log(userRes.data)
     }
   };
 
