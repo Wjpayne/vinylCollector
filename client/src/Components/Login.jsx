@@ -94,7 +94,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
         const loginUser = { email, password };
         const loginRes = await axios.post("/users/login", loginUser, authToken);
         setUserData({
-          token: loginRes.data.token,
+          token: loginRes.data,
           user: loginRes.data,
         });
         console.log(loginRes.data.token)

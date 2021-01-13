@@ -107,8 +107,32 @@ export default function ShowRecords() {
 
   };
 
+  const checkLoggedIn = async () => {
+    let token = localStorage.getItem("auth-token");
+    if (token === null) {
+      localStorage.setItem("auth-token", "");
+      token = null;
+    }
+    const tokenRes = await axios.post(
+      "/users/tokenIsValid",
+      null,
+      { headers: { "x-auth-token": token } }
+    );
+    if (tokenRes.data) {
+      const userRes = await axios.get("/users", {
+        headers: { "x-auth-token": token },
+      });
+      setUserData({
+        token: userRes.data,
+        user: userRes.data
+      });
+    }
+  };
+
+
   React.useEffect(() => {
     fetchData();
+    checkLoggedIn()
 
     console.log("data");
   }, [
