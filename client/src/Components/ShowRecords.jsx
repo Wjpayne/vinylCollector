@@ -97,10 +97,15 @@ export default function ShowRecords() {
     handleEditModal();
   };
 
+  //fetch record data
+
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
+    console.log(result.data)
   };
+
+  // see if user is logged in already, if not set a token and userData
 
   const checkLoggedIn = async () => {
     let token = localStorage.getItem("auth-token");
@@ -123,8 +128,9 @@ export default function ShowRecords() {
   };
 
   React.useEffect(() => {
-    fetchData();
     checkLoggedIn();
+    fetchData();
+    
 
     console.log("data");
   }, []);
