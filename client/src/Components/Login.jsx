@@ -77,42 +77,32 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
 
   //get Context and history
 
+  
   const { setUserData } = React.useContext(UserContext);
 
   //functions to handle sumbit for login
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    try {
-      const loginUser = { email, password };
-      const loginRes = await axios.post("/users/login", loginUser, authToken);
+  
 
-      let token = localStorage.getItem("auth-token");
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = null;
-      }
 
-      const tokenRes = await axios.post("/users/tokenIsValid", null, {
-        headers: { "x-auth-token": token },
-      });
-      if (tokenRes.data) {
-        const userRes = await axios.get("/users", {
-          headers: { "x-auth-token": token },
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        const loginUser = { email, password };
+        const loginRes = await axios.post("/users/login", loginUser, authToken);
+        setUserData({
+          token: loginRes.data.token,
+          user: loginRes.data.user,
         });
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/profile");
+      } catch (err) {
+        err.response.data.msg && setError(err.response.data.msg);
       }
-
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/profile");
-    } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
-    }
-  };
+    };
 
   const handleRegisterOpen = () => {
     registerIsOpen(true);
