@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
-import UserContext from "./UserContext";
+
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +57,7 @@ const recordFormStyles = makeStyles((theme) => ({
 
 export default function ShowRecords() {
   const classes = recordFormStyles();
-
+  const url = " http://localhost:5000/record";
 
   //set state for showing records in database and opening/closing modals
 
@@ -81,7 +81,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const [userData] = React.useContext(UserContext) 
+  const { newRecords, newRecordData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -98,15 +98,26 @@ export default function ShowRecords() {
   };
 
   const fetchData = async () => {
+
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
+
+
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, []);
+  }, [
+    newRecords._id,
+    newRecords.title,
+    newRecords.artist,
+    newRecords.rating,
+    newRecords.genre,
+    newRecords.description,
+    
+  ]);
 
   // delete records
 
@@ -163,6 +174,7 @@ export default function ShowRecords() {
         editRatingState={setRating}
         editGenreState={setGenre}
         editDescriptionState={setDescription}
+        editUrl={url}
         editFetchData={fetchData}
         editNewRecordData={newRecordData}
       />
