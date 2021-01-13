@@ -4,6 +4,7 @@ import Profile from "./Components/Profile";
 import Main from "./Components/Main";
 import UserContext from "./Components/UserContext";
 import SearchResults from "./Components/SearchResults";
+import axios from "axios";
 
 function App() {
   const [userData, setUserData] = React.useState({
