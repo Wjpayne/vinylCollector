@@ -81,7 +81,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const { setUserData } = React.useContext(UserContext);
+  const { userData } = React.useContext(UserContext);
 
   //functions to control state
 
@@ -112,7 +112,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, []);
+  }, [userData.token]);
 
   // delete records
 
