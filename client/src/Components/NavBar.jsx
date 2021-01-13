@@ -178,8 +178,6 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
 
   const { userData, setUserData } = React.useContext(UserContext);
 
-  const history = React.useHistory();
-
   const logOut = () => {
   
 
@@ -188,7 +186,6 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
       user: undefined,
     });
     localStorage.setItem("auth-token", false);
-    history.push("/")
   };
 
   return (
@@ -301,7 +298,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
             </ListItem>
           )}
           {userData.user ? (
-            <ListItem >
+            <ListItem button component={Link} to="/" onClick={logOut}>
               <ListItemIcon>
                 {" "}
                 <PersonIcon />
