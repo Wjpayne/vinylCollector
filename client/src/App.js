@@ -36,7 +36,7 @@ function App() {
         });
         setUserData({
           token: userRes.data.token,
-          user: userRes.data.user
+          user: userRes.data
         });
       }
     };
