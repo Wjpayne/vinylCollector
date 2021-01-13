@@ -114,7 +114,7 @@ export default function ShowRecords() {
       });
       setUserData({
         token: userRes.data.token,
-        user: userRes.data.user
+        user: userRes.data
       });
       console.log(userRes.data)
     }
@@ -125,7 +125,7 @@ export default function ShowRecords() {
   const fetchData = async () => {
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
-    console.log(result.data.userId);
+    console.log(result.data);
   };
 
   React.useEffect(() => {
