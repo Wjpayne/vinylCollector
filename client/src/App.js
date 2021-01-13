@@ -11,6 +11,35 @@ function App() {
     user: null,
   });
 
+  // see if user is logged in already, if not set a token and userData
+
+  const checkLoggedIn = async () => {
+    let token = localStorage.getItem("auth-token");
+    if (token === null) {
+      localStorage.setItem("auth-token", "");
+      token = null;
+    }
+    const tokenRes = await axios.post("/users/tokenIsValid", null, {
+      headers: { "x-auth-token": token },
+    });
+    if (tokenRes.data) {
+      const userRes = axios.get("/users", {
+        headers: { "x-auth-token": token },
+      });
+      setUserData({
+        token: userRes.data.token,
+        user: userRes.data,
+      });
+      console.log(userRes.data);
+    }
+  };
+
+  React.useEffect(() => {
+    checkLoggedIn();
+
+    console.log("data");
+  }, []);
+
   return (
     <div className="App">
       <UserContext.Provider value={{ userData, setUserData }}>
