@@ -12,7 +12,6 @@ import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
 import UserContext from "./UserContext";
 
-
 const recordFormStyles = makeStyles((theme) => ({
   root: {
     height: "225px",
@@ -84,7 +83,6 @@ export default function ShowRecords() {
 
   const { userData, setUserData } = React.useContext(UserContext);
 
-
   //functions to control state
 
   const handleAddModalOpen = () => {
@@ -100,11 +98,8 @@ export default function ShowRecords() {
   };
 
   const fetchData = async () => {
-
     const result = await axios.get("record/get", authToken);
     newRecordData(result.data);
-
-
   };
 
   const checkLoggedIn = async () => {
@@ -113,60 +108,29 @@ export default function ShowRecords() {
       localStorage.setItem("auth-token", "");
       token = null;
     }
-    const tokenRes = await axios.post(
-      "/users/tokenIsValid",
-      null,
-      { headers: { "x-auth-token": token } }
-    );
+    const tokenRes = await axios.post("/users/tokenIsValid", null, {
+      headers: { "x-auth-token": token },
+    });
     if (tokenRes.data) {
       const userRes = await axios.get("/users", {
         headers: { "x-auth-token": token },
       });
       setUserData({
         token: userRes.data,
-        user: userRes.data
+        user: userRes.data,
       });
     }
   };
 
-
   React.useEffect(() => {
     fetchData();
-    checkLoggedIn()
+    checkLoggedIn();
 
     console.log("data");
-  }, [
-
-    
-  ]);
+  }, []);
 
 
-  React.useEffect(() => {
-    const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = null;
-      }
-      const tokenRes = await axios.post(
-        "/users/tokenIsValid",
-        null,
-        { headers: { "x-auth-token": token } }
-      );
-      if (tokenRes.data) {
-        const userRes = await axios.get("/users", {
-          headers: { "x-auth-token": token },
-        });
-        setUserData({
-          token: userRes.data.token,
-          user: userRes.data
-        });
-      }
-    };
-    console.log("check")
 
-    checkLoggedIn();
-  }, [userData.token]);
 
 
 
