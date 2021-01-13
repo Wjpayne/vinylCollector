@@ -109,7 +109,7 @@ export default function ShowRecords() {
       headers: { "x-auth-token": token },
     });
     if (tokenRes.data) {
-      const userRes = await axios.get("/users", {
+      const userRes = axios.get("/users", {
         headers: { "x-auth-token": token },
       });
       setUserData({
