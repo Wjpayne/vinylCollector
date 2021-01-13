@@ -179,10 +179,10 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   const { userData, setUserData } = React.useContext(UserContext);
 
   const logOut = async () => {
-
+    let token = localStorage.setItem("auth-token", false)
 
     setUserData({
-      token: null,
+      token: false,
       user: null,
     });
     localStorage.setItem("auth-token", false);

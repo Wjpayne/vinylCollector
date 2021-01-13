@@ -8,16 +8,16 @@ import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [userData, setUserData] = React.useState({
-    token: null,
+    token: false,
     user: null,
   });
 
   React.useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
-      if (token === null) {
+      if (token === false) {
         localStorage.setItem("auth-token", "");
-        token = null;
+        token = false;
       }
       const tokenRes = await axios.post(
         "/users/tokenIsValid",
