@@ -57,7 +57,7 @@ const recordFormStyles = makeStyles((theme) => ({
 
 export default function ShowRecords() {
   const classes = recordFormStyles();
-  const url = " http://localhost:5000/record";
+
 
   //set state for showing records in database and opening/closing modals
 
@@ -106,7 +106,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, [userData.token]);
+  }, []);
 
   // delete records
 
