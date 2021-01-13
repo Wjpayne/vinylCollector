@@ -113,9 +113,10 @@ export default function ShowRecords() {
         headers: { "x-auth-token": token },
       });
       setUserData({
-        token: userRes.data,
-        user: userRes.data,
+        token: userRes.data.token,
+        user: userRes.data.user,
       });
+      console.log(userRes.data.user)
     }
   };
 
