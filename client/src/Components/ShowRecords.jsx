@@ -128,7 +128,15 @@ export default function ShowRecords() {
   };
 
   React.useEffect(() => {
+  
     checkLoggedIn();
+    
+
+    console.log("data");
+  }, []);
+
+  React.useEffect(() => {
+  
     fetchData();
     
 
