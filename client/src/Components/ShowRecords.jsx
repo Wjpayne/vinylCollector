@@ -136,13 +136,7 @@ export default function ShowRecords() {
 
     console.log("data");
   }, [
-    newRecords._id,
-    newRecords.title,
-    newRecords.artist,
-    newRecords.rating,
-    newRecords.genre,
-    newRecords.description,
-    newRecords.userId,
+
     
   ]);
 
