@@ -163,7 +163,6 @@ export default function ShowRecords() {
         editRatingState={setRating}
         editGenreState={setGenre}
         editDescriptionState={setDescription}
-        editUrl={url}
         editFetchData={fetchData}
         editNewRecordData={newRecordData}
       />

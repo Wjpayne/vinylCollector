@@ -65,7 +65,6 @@ export default function EditRecords({
   editRatingState,
   editGenreState,
   editDescriptionState,
-  editUrl,
   editNewRecordData,
 }) {
   const classes = editFormStyles();
