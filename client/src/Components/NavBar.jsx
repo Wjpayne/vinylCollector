@@ -299,7 +299,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                 {" "}
                 <PersonIcon />
               </ListItemIcon>
-              <ListItemText>Log outu</ListItemText>
+              <ListItemText>Log out</ListItemText>
             </ListItem>
           ) : (
             <div></div>
