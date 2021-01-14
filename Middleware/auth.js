@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
   try {
-    const token = req.header("x-auth-token");
+    const token = req.headers.authorization.split(" ")[1];
     if (!token)
       return res
         .status(401)
@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
         .status(401)
         .json({ msg: "Token verification failed, authorization denied." });
 
-    req.user = verified.userId;
+    req.user = { userId: verified.userId, email: verified.email };
     next();
   } catch (err) {
     res.status(500).json({ error: err.message });

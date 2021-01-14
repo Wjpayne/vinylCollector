@@ -5,11 +5,11 @@ const auth = require("../Middleware/auth");
 const User = require("../Models/Users");
 require("dotenv").config();
 
-
+// register user
 
 router.post("/register", async (req, res) => {
   try {
-    let {  email, password, passwordCheck, displayName } = req.body;
+    let { email, password, passwordCheck, displayName } = req.body;
 
     // validate
 
@@ -34,7 +34,6 @@ router.post("/register", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      
       email,
       password: passwordHash,
       displayName,
@@ -63,9 +62,12 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign({ email: user.email, userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign(
+      { email: user.email, userId: user._id },
+      process.env.JWT_SECRET
+    );
     res.json({
-      token,
+      token: token,
       user: {
         userId: user._id,
         displayName: user.displayName,
