@@ -184,8 +184,8 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
 
   const logOut = async () => {
     setUserData({
-      token: false,
-      user: "",
+      token: undefined,
+      user: undefined,
     });
     localStorage.setItem("auth-token", "");
     history.push("/");
@@ -299,7 +299,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                 {" "}
                 <PersonIcon />
               </ListItemIcon>
-              <ListItemText>Log out</ListItemText>
+              <ListItemText>Log outu</ListItemText>
             </ListItem>
           ) : (
             <div></div>

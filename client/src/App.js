@@ -8,11 +8,11 @@ import axios from "axios";
 
 function App() {
   const [userData, setUserData] = React.useState({
-    token: false,
-    user: "",
+    token: undefined,
+    user: undefined,
   });
 
-
+  // see if user is logged in already, if not set a token and userData
 
   React.useEffect(() => {
     const checkLoggedIn = async () => {
