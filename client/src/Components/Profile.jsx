@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import { makeStyles } from "@material-ui/styles";
 import ShowRecords from "./ShowRecords";
+import UserContext from "./UserContext";
 
 const profileStyles = makeStyles((theme) => ({
   addButton: {
@@ -24,6 +25,33 @@ const profileStyles = makeStyles((theme) => ({
 export default function Profile() {
   const classes = profileStyles();
 
+  const [ setUserData ] = React.useContext(UserContext)
+
+  React.useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem("auth-token");
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenRes = await axios.post(
+        "/users/tokenIsValid",
+        null,
+        { headers: { "x-auth-token": token } }
+      );
+      if (tokenRes.data) {
+        const userRes = await axios.get("/users", {
+          headers: { "x-auth-token": token },
+        });
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
+    };
+
+    checkLoggedIn();
+  }, []);
   return (
     <div>
       <NavBar />
