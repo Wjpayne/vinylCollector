@@ -31,14 +31,14 @@ function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({
-          token: true,
+          token,
           user: userRes.data,
         });
       }
     };
 
     checkLoggedIn();
-  }, [userData.token]);
+  }, []);
 
   return (
     <div className="App">
