@@ -3,13 +3,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../Middleware/auth");
 const User = require("../Models/Users");
-require("dotenv").config();
-
-// register user
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, displayName } = req.body;
+    let {  email, password, passwordCheck, displayName } = req.body;
 
     // validate
 
@@ -34,6 +31,7 @@ router.post("/register", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new User({
+      
       email,
       password: passwordHash,
       displayName,
@@ -62,14 +60,11 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign(
-      { email: user.email, userId: user._id },
-      process.env.JWT_SECRET
-    );
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.json({
-      token: token,
+      token,
       user: {
-        userId: user._id,
+        id: user._id,
         displayName: user.displayName,
       },
     });
@@ -99,7 +94,7 @@ router.post("/tokenIsValid", async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (!verified) return res.json(false);
 
-    const user = await User.findById(verified.userId);
+    const user = await User.findById(verified.id);
     if (!user) return res.json(false);
 
     return res.json(true);
@@ -108,11 +103,11 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
-router.get("/", auth, async (req, res) => {
+router.get("/users", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
     displayName: user.displayName,
-    userId: user._id,
+    id: user._id,
   });
 });
 

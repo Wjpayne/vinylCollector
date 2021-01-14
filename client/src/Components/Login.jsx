@@ -77,14 +77,9 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
 
   //get Context and history
 
-  
   const { setUserData } = React.useContext(UserContext);
 
   //functions to handle sumbit for login
-
-
-  
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +93,6 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
       });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/profile");
-      
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
