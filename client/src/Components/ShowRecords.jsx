@@ -112,7 +112,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, [userData.token]);
+  }, [userData.user]);
 
   // delete records
 
