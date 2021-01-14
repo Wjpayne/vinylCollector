@@ -5,6 +5,9 @@ import Main from "./Components/Main";
 import UserContext from "./Components/UserContext";
 import SearchResults from "./Components/SearchResults";
 import axios from "axios";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core";
+import theme from "./Fonts/Theme";
 
 function App() {
   const [userData, setUserData] = React.useState({
@@ -21,11 +24,9 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenRes = await axios.post(
-        "/users/tokenIsValid",
-        null,
-        { headers: { "x-auth-token": token } }
-      );
+      const tokenRes = await axios.post("/users/tokenIsValid", null, {
+        headers: { "x-auth-token": token },
+      });
       if (tokenRes.data) {
         const userRes = await axios.get("/users", {
           headers: { "x-auth-token": token },

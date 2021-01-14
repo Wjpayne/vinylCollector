@@ -7,13 +7,14 @@ import Svg from "./SVG/EqualizerSVG";
 import Svg2 from "./SVG/EqualizerSVG2";
 import NavBar from "./NavBar";
 import Login from "./Login";
+import Articles from "./Articles/Articles";
 
 const mainStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
     margin: "auto",
     backgroundColor: "black",
-    height: "1400px",
+    height: "1000px",
   },
 
   title: {
@@ -40,17 +41,22 @@ const mainStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     left: "50%",
     transform: "translateX(-50%)",
-    position: "absolute",
-    top: "70%",
+    position: "relative",
+    top: "30%",
 
     "&:hover": {
       backgroundColor: fade(theme.palette.common.black),
       color: "white",
     },
     [theme.breakpoints.down("xs")]: {
-      top: "20%",
+      top: "-60%",
     },
   },
+
+  articles: {
+    backgroundColor: "black",
+    height: "1300px"
+  }
 }));
 
 export default function Main() {
@@ -62,6 +68,7 @@ export default function Main() {
     setOpen(true);
   };
   return (
+    <div>
     <div className={classes.container}>
       <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
       <Svg />
@@ -75,8 +82,13 @@ export default function Main() {
         Start making your profile{" "}
       </Button>
       <Svg2 />
-
       <Login isLoginOpen={isOpen} handleCloseModal={() => setOpen(false)} />
+     
     </div>
+    <div className = {classes.articles}>
+    <Articles />
+    </div>
+    </div>
+    
   );
 }

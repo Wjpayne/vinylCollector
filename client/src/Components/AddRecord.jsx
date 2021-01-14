@@ -58,7 +58,7 @@ export default function AddRecord({
   refreshRecordData,
 }) {
   const classes = recordFormStyles();
-  const url = "http://localhost:5000/record/add";
+  // const url = "http://localhost:5000/record/add";
 
   //set intial state
 

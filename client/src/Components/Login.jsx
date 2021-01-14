@@ -64,7 +64,7 @@ const loginFormStyles = makeStyles((theme) => ({
 
 export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   const classes = loginFormStyles();
-  const url = "http://localhost:5000/users/";
+  // const url = "http://localhost:5000/users/";
   const history = useHistory();
 
   //set state for login
