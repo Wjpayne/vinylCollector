@@ -86,7 +86,6 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,7 +96,6 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      console.log(loginRes.data.user)
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/profile");
     } catch (err) {
