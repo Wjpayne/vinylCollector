@@ -8,7 +8,7 @@ import axios from "axios";
 
 function App() {
   const [userData, setUserData] = React.useState({
-    token: "",
+    token: false,
     user: "",
   });
 
@@ -31,7 +31,7 @@ function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({
-          token,
+          token: true,
           user: userRes.data,
         });
       }
