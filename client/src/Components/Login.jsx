@@ -93,6 +93,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
       });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/profile");
+      window.location.reload();
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
