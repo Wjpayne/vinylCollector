@@ -121,7 +121,7 @@ export default function ShowRecords() {
     };
 
     checkLoggedIn();
-  }, [userData.token]);
+  }, []);
 
   //fetch record data
 
