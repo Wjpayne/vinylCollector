@@ -81,7 +81,7 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  const { userData } = React.useContext(UserContext);
+  const { userData, setUserData } = React.useContext(UserContext);
 
   //functions to control state
 
