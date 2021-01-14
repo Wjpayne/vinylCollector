@@ -16,11 +16,7 @@ function App() {
 
   React.useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");
-      if (token === undefined) {
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
+
       const tokenRes = await axios.post(
         "/users/tokenIsValid",
         null,
