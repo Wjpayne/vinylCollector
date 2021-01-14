@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { makeStyles } from "@material-ui/styles";
 import ShowRecords from "./ShowRecords";
 import UserContext from "./UserContext";
+import axios from "axios"
 
 const profileStyles = makeStyles((theme) => ({
   addButton: {
