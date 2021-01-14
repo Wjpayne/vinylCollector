@@ -34,7 +34,7 @@ function App() {
     };
 
     checkLoggedIn();
-  }, [userData.token]);
+  }, []);
 
   return (
     <div className="App">

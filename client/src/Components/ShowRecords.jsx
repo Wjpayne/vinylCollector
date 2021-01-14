@@ -114,7 +114,7 @@ export default function ShowRecords() {
     fetchData();
 
     console.log("data");
-  }, [userData._id]);
+  }, []);
 
 
     // see if user is logged in already, if not set a token and userData
