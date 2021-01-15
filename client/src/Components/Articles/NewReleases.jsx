@@ -8,7 +8,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     height: "520px",
     overflow: "hidden",
     [theme.breakpoints.down("xs")]: {
-      height: "550px",
+      height: "650px",
       
     },
   },
