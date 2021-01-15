@@ -22,6 +22,7 @@ const mainStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "20vh",
     fontSize: "5em",
+    cursor: "default"
   },
 
   titleDivider: {

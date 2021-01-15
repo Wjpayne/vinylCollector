@@ -15,6 +15,7 @@ import { authToken } from "./AuthToken";
 const recordFormStyles = makeStyles((theme) => ({
   root: {
     height: "225px",
+    width: "300px",
     "&:hover": {
       cursor: "pointer",
     },
