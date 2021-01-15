@@ -10,6 +10,12 @@ import Login from "./Login";
 import Articles from "./Articles/Articles";
 
 const mainStyles = makeStyles((theme) => ({
+
+  root: {
+    backgroundColor: "black",
+    margin: "auto"
+
+  },
   container: {
     width: "100%",
     margin: "auto",
@@ -36,6 +42,7 @@ const mainStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "5vh",
     fontSize: "2em",
+    cursor: "default"
   },
 
   addLink: {
@@ -70,7 +77,7 @@ export default function Main() {
     setOpen(true);
   };
   return (
-    <div>
+    <div className = {classes.root}>
     <div className={classes.container}>
       <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
       <Svg />

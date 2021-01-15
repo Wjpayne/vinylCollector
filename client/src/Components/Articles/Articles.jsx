@@ -1,15 +1,15 @@
 import {  Grid, makeStyles} from "@material-ui/core";
 import React from "react";
-import NewReleases from "./NewReleases";
+import Featured from "./Featured";
 
-const newReleaseStyles = makeStyles(() => ({
+const articleStyles = makeStyles(() => ({
   main: {
     backgroundColor: "black",
   },
 }));
 
 export default function Articles() {
-  const classes = newReleaseStyles();
+  const classes = articleStyles();
   return (
     <div className={classes.main}>
       <Grid
@@ -20,7 +20,7 @@ export default function Articles() {
         spacing={8}
       >
         <Grid item xs={12} sm = {10} md = {7} lg = {5} xl = {4} justify="center">
-          <NewReleases />
+          <Featured />
         </Grid>
 
       </Grid>

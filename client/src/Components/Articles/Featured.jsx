@@ -33,6 +33,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "23px",
     },
+    cursor: "default"
   },
 
   h2: {
@@ -43,6 +44,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "20px",
     },
+    cursor: "default"
   },
 
   h3: {
@@ -50,6 +52,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "14.5px",
     },
+    cursor: "default"
   },
 
   div: {
@@ -63,12 +66,15 @@ const newReleaseStyles = makeStyles((theme) => ({
   divDesc: {
     position: "relative",
     justifyContent: "center",
+    overflow: "scroll",
+    height: "500px"
   },
 
   title: {
     textAlign: "center",
     marginTop: "0",
     marginBottom: "0",
+    cursor: "default"
   },
 
   divider: {
@@ -122,15 +128,15 @@ function Item(props) {
     <Paper className={classes.paper}>
       <h1 className={classes.title}>Featured Records</h1>
       <Divider className={classes.divider} />
-      <Grid container>
-        <Grid item sm={5} xs={5} md = {5} lg = {5}>
+      <Grid container >
+        <Grid  xs={6} >
           <img alt = "vinyl or album cover" className={classes.image} src={props.item.image}></img>
           <div className={classes.div}>
             <h1 className={classes.h1}>{props.item.artist}</h1>
             <h2 className={classes.h2}>{props.item.album}</h2>
           </div>
         </Grid>
-        <Grid item sm={7} xs={7} md= {7} lg ={7}>
+        <Grid  xs={6} >
           <div className={classes.divDesc}>
             <h3 className={classes.h3}>{props.item.description}</h3>
           </div>
