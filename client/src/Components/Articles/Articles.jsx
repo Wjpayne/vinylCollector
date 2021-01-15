@@ -1,4 +1,4 @@
-import { Card, Grid, makeStyles, Paper } from "@material-ui/core";
+import {  Grid, makeStyles} from "@material-ui/core";
 import React from "react";
 import NewReleases from "./NewReleases";
 

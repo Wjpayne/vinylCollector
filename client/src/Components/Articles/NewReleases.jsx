@@ -7,6 +7,10 @@ const newReleaseStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     height: "520px",
     overflow: "hidden",
+    [theme.breakpoints.down("sm")]: {
+      height: "550px",
+      
+    },
   },
 
   image: {
@@ -120,7 +124,7 @@ function Item(props) {
       <Divider className={classes.divider} />
       <Grid container>
         <Grid item sm={5} xs={5} md = {5} lg = {5}>
-          <img className={classes.image} src={props.item.image}></img>
+          <img alt = "vinyl or album cover" className={classes.image} src={props.item.image}></img>
           <div className={classes.div}>
             <h1 className={classes.h1}>{props.item.artist}</h1>
             <h2 className={classes.h2}>{props.item.album}</h2>

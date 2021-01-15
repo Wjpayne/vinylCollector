@@ -49,7 +49,8 @@ const mainStyles = makeStyles((theme) => ({
       color: "white",
     },
     [theme.breakpoints.down("xs")]: {
-      top: "-60%",
+      top: "20%",
+      position: "absolute"
     },
   },
 
