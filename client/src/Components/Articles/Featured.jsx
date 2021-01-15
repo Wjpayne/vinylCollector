@@ -5,10 +5,12 @@ import { Divider, Grid, makeStyles, Paper } from "@material-ui/core";
 const newReleaseStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "white",
-    height: "520px",
+    height: "540px",
     overflow: "hidden",
+    
     [theme.breakpoints.down("xs")]: {
-      height: "650px",
+      height: "675px",
+      
       
     },
   },
@@ -67,7 +69,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     position: "relative",
     justifyContent: "center",
     overflow: "scroll",
-    height: "500px"
+    height: "570px"
   },
 
   title: {
