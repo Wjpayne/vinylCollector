@@ -40,7 +40,7 @@ function App() {
   }, [userData.token]);
 
   return (
-    <div className="App" style = {{margin: "0"}}>
+    <div className="App" >
       <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>

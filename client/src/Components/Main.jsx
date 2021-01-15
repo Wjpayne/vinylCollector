@@ -13,12 +13,12 @@ const mainStyles = makeStyles((theme) => ({
 
   root: {
     backgroundColor: "black",
-    margin: "0"
+    margin: "auto"
 
   },
   container: {
     width: "100%",
-    margin: "0",
+    margin: "auto",
     backgroundColor: "black",
     height: "1000px",
   },
@@ -42,7 +42,6 @@ const mainStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "5vh",
     fontSize: "2em",
-    cursor: "default"
   },
 
   addLink: {
@@ -77,7 +76,7 @@ export default function Main() {
     setOpen(true);
   };
   return (
-    
+    <div className = {classes.root}>
     <div className={classes.container}>
       <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
       <Svg />
@@ -93,10 +92,9 @@ export default function Main() {
       <Svg2 />
       <Login isLoginOpen={isOpen} handleCloseModal={() => setOpen(false)} />
      
-    
+    </div>
     <div className = {classes.articles}>
     <Articles />
-  
     </div>
     </div>
     

@@ -5,6 +5,7 @@ import Featured from "./Featured";
 const articleStyles = makeStyles(() => ({
   main: {
     backgroundColor: "black",
+    margin: "0"
   },
 }));
 
