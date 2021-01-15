@@ -7,7 +7,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     height: "520px",
     overflow: "hidden",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       height: "550px",
       
     },
@@ -47,7 +47,7 @@ const newReleaseStyles = makeStyles((theme) => ({
 
   h3: {
     margin: "20px",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       fontSize: "14.5px",
     },
   },
