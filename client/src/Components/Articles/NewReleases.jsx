@@ -9,7 +9,6 @@ const newReleaseStyles = makeStyles((theme) => ({
     overflow: "hidden",
     [theme.breakpoints.down("xs")]: {
       height: "650px",
-      
     },
   },
 
@@ -120,19 +119,24 @@ function Item(props) {
   const classes = newReleaseStyles();
   return (
     <Paper className={classes.paper}>
-      <h1 className={classes.title}>Featured Records</h1>
+      <h1 className={classes.title}>New Releases</h1>
       <Divider className={classes.divider} />
       <Grid container>
-        <Grid item sm={5} xs={5} md = {5} lg = {5}>
-          <img alt = "vinyl or album cover" className={classes.image} src={props.item.image}></img>
+        <Grid item sm={7} xs={7} md={7} lg={7}>
+          <div className={classes.divDesc}>
+            <h3 className={classes.h3}>{props.item.description}</h3>
+          </div>
+        </Grid>
+
+        <Grid item sm={5} xs={5} md={5} lg={5}>
+          <img
+            alt="vinyl or album cover"
+            className={classes.image}
+            src={props.item.image}
+          ></img>
           <div className={classes.div}>
             <h1 className={classes.h1}>{props.item.artist}</h1>
             <h2 className={classes.h2}>{props.item.album}</h2>
-          </div>
-        </Grid>
-        <Grid item sm={7} xs={7} md= {7} lg ={7}>
-          <div className={classes.divDesc}>
-            <h3 className={classes.h3}>{props.item.description}</h3>
           </div>
         </Grid>
       </Grid>

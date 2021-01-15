@@ -13,12 +13,12 @@ const mainStyles = makeStyles((theme) => ({
 
   root: {
     backgroundColor: "black",
-    margin: "auto"
+    margin: "0"
 
   },
   container: {
     width: "100%",
-    margin: "auto",
+    margin: "0",
     backgroundColor: "black",
     height: "1000px",
   },
@@ -77,7 +77,7 @@ export default function Main() {
     setOpen(true);
   };
   return (
-    <div className = {classes.root}>
+    
     <div className={classes.container}>
       <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
       <Svg />
@@ -93,9 +93,10 @@ export default function Main() {
       <Svg2 />
       <Login isLoginOpen={isOpen} handleCloseModal={() => setOpen(false)} />
      
-    </div>
+    
     <div className = {classes.articles}>
     <Articles />
+  
     </div>
     </div>
     

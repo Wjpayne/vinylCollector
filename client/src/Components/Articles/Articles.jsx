@@ -19,7 +19,7 @@ export default function Articles() {
         direction="row"
         spacing={8}
       >
-        <Grid item xs={12} sm = {10} md = {7} lg = {5} xl = {4} justify="center">
+        <Grid item xs={12} sm = {10} md = {7} lg = {6} xl = {5} justify="center">
           <Featured />
         </Grid>
 

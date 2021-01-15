@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Divider, Grid, makeStyles, Paper } from "@material-ui/core";
 
-const newReleaseStyles = makeStyles((theme) => ({
+const featuredStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "white",
     height: "540px",
@@ -58,10 +58,10 @@ const newReleaseStyles = makeStyles((theme) => ({
   },
 
   div: {
-    width: "250px",
+    width: "290px",
     height: "auto",
     [theme.breakpoints.down("sm")]: {
-      width: "150px",
+      width: "190px",
     },
   },
 
@@ -125,7 +125,7 @@ export default function Featured() {
 }
 
 function Item(props) {
-  const classes = newReleaseStyles();
+  const classes = featuredStyles();
   return (
     <Paper className={classes.paper}>
       <h1 className={classes.title}>Featured Records</h1>
