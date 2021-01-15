@@ -1,29 +1,28 @@
-import { Grid, makeStyles, Paper } from "@material-ui/core";
+import { Card, Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
 import NewReleases from "./NewReleases";
 
 const newReleaseStyles = makeStyles(() => ({
-
-
   main: {
-      backgroundColor: "black"
-  }
+    backgroundColor: "black",
+  },
 }));
 
 export default function Articles() {
   const classes = newReleaseStyles();
   return (
-    <div className = {classes.main}>
-      <Grid container justify="center" alignItems="center" direction="row" spacing={8}>
-        <Grid  item xs={9} justify="center">
+    <div className={classes.main}>
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        direction="row"
+        spacing={8}
+      >
+        <Grid item xs={12} sm = {10} md = {7} lg = {5} xl = {4} justify="center">
           <NewReleases />
         </Grid>
-        <Grid  item xs={9} >
-          <Paper className={classes.paper}>hey</Paper>
-        </Grid>
-        <Grid  item xs={9} >
-          <Paper className={classes.paper}>hey</Paper>
-        </Grid>
+
       </Grid>
     </div>
   );

@@ -21,8 +21,7 @@ import Button from "@material-ui/core/Button";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
-import { useHistory } from "react-router-dom";
-
+import { useHistory } from "react-router-dom"
 
 const drawerWidth = 240;
 
