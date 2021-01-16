@@ -18,7 +18,7 @@ export const items = [
 
     {
       image:
-        "http://www.earsplitcompound.com/site/wp-content/uploads/2018/08/GULCH_4559-photo-by-Gabe-Becerra-1024x745.jpg",
+        "http://creator-destructor.com/wp-content/uploads/2018/07/GULCHSITE-copy.png",
       artist: "Gulch",
       album: "Impenetrable Cerebral Fortress",
       description:

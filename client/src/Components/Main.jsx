@@ -10,11 +10,9 @@ import Login from "./Login";
 import Articles from "./Articles/Articles";
 
 const mainStyles = makeStyles((theme) => ({
-
   root: {
     backgroundColor: "black",
-    margin: "auto"
-
+    margin: "auto",
   },
   container: {
     width: "100%",
@@ -28,7 +26,7 @@ const mainStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "20vh",
     fontSize: "5em",
-    cursor: "default"
+    cursor: "default",
   },
 
   titleDivider: {
@@ -42,6 +40,7 @@ const mainStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "5vh",
     fontSize: "2em",
+    cursor: "default",
   },
 
   addLink: {
@@ -57,14 +56,14 @@ const mainStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       top: "20%",
-      position: "absolute"
+      position: "absolute",
     },
   },
 
   articles: {
     backgroundColor: "black",
-    height: "1300px"
-  }
+    height: "1300px",
+  },
 }));
 
 export default function Main() {
@@ -76,27 +75,25 @@ export default function Main() {
     setOpen(true);
   };
   return (
-    <div className = {classes.root}>
-    <div className={classes.container}>
-      <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
-      <Svg />
-      <Typography className={classes.title}>THE BLAST BEAT</Typography>
-      <Divider className={classes.titleDivider} />
-      <Typography className={classes.description}>
-        A place to curate and share your record collection
-      </Typography>
+    <div className={classes.root}>
+      <div className={classes.container}>
+        <NavBar isModalOpen={isOpen} setModalOpen={() => setOpen(true)} />
+        <Svg />
+        <Typography className={classes.title}>THE BLAST BEAT</Typography>
+        <Divider className={classes.titleDivider} />
+        <Typography className={classes.description}>
+          A place to curate and share your record collection
+        </Typography>
 
-      <Button onClick={() => handleOpen()} className={classes.addLink}>
-        Start making your profile{" "}
-      </Button>
-      <Svg2 />
-      <Login isLoginOpen={isOpen} handleCloseModal={() => setOpen(false)} />
-     
+        <Button onClick={() => handleOpen()} className={classes.addLink}>
+          Start making your profile{" "}
+        </Button>
+        <Svg2 />
+        <Login isLoginOpen={isOpen} handleCloseModal={() => setOpen(false)} />
+      </div>
+      <div className={classes.articles}>
+        <Articles />
+      </div>
     </div>
-    <div className = {classes.articles}>
-    <Articles />
-    </div>
-    </div>
-    
   );
 }

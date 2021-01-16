@@ -36,7 +36,6 @@ const bandCampStyles = makeStyles((theme) => ({
 
   scroll: {
     overflow: "scroll",
-
   },
 
   title: {
@@ -53,13 +52,13 @@ const bandCampStyles = makeStyles((theme) => ({
   bandcampLeft: {
     float: "left",
     marginTop: "20px",
-    marginLeft: "20px"
+    marginLeft: "20px",
   },
 
   bandcampRight: {
     float: "right",
     marginTop: "20px",
-    marginRight: "20px"
+    marginRight: "20px",
   },
 }));
 
@@ -68,60 +67,57 @@ export default function Bandcamp() {
   return (
     <div className={classes.div}>
       <Paper className={classes.paper}>
-          <div className = {classes.scroll}>
-        <div className={classes.bandcampLeft}>
-          <BandcampPlayer
-            album="3240541995"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
-        </div>
-        <div className={classes.bandcampRight}>
-          <BandcampPlayer
-            album="4150343011"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
-        </div>
-        <div className={classes.bandcampLeft}>
-          <BandcampPlayer
-            album="1250670259"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
-        </div>
-        <div className={classes.bandcampRight}>
-          <BandcampPlayer
-            album="2079579668"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
-        </div>
-        <div className={classes.bandcampLeft}>
-          <BandcampPlayer
-            album="2636761936"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
-        </div>
+        <div className={classes.scroll}>
+          <div className={classes.bandcampLeft}>
+            <BandcampPlayer
+              album="3240541995"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
+          <div className={classes.bandcampRight}>
+            <BandcampPlayer
+              album="4150343011"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
+          <div className={classes.bandcampLeft}>
+            <BandcampPlayer
+              album="1250670259"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
+          <div className={classes.bandcampRight}>
+            <BandcampPlayer
+              album="2079579668"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
+          <div className={classes.bandcampLeft}>
+            <BandcampPlayer
+              album="2636761936"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
 
-        <div className={classes.bandcampRight}>
-          <BandcampPlayer
-            album="14353457"
-            size="large"
-            artwork="big"
-            height="300px"
-          />
+          <div className={classes.bandcampRight}>
+            <BandcampPlayer
+              album="14353457"
+              size="large"
+              artwork="big"
+              height="300px"
+            />
+          </div>
         </div>
-        </div>
-        
-
-
       </Paper>
     </div>
   );

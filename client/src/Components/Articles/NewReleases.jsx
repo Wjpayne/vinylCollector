@@ -8,7 +8,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     height: "540px",
     overflow: "hidden",
- 
+
     [theme.breakpoints.down("xs")]: {
       height: "675px",
     },
@@ -49,8 +49,7 @@ const newReleaseStyles = makeStyles((theme) => ({
   bold: {
     fontSize: "17px",
     cursor: "default",
-  }
-  
+  },
 }));
 
 export default function NewReleases() {
@@ -59,7 +58,6 @@ export default function NewReleases() {
   return (
     <div>
       <h1 className={classes.title}>New Releases</h1>
-      
 
       <div className={classes.div}>
         {releases.map((item, i) => (
