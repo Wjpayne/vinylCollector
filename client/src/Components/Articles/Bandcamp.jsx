@@ -4,11 +4,11 @@ import BandcampPlayer from "react-bandcamp";
 
 const bandCampStyles = makeStyles((theme) => ({
   paper: {
-    height: "2000px",
+    height: "1295px",
     overflow: "hidden",
     [theme.breakpoints.down("xs")]: {
       height: "675px",
-    },
+    },marginRight: "30px"
   },
 
   date: {
@@ -36,6 +36,7 @@ const bandCampStyles = makeStyles((theme) => ({
 
   scroll: {
     overflow: "scroll",
+    
   },
 
   title: {

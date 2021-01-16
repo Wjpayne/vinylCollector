@@ -79,7 +79,7 @@
       height: 13px;
     }
   }
-  @media screen and (min-width: 0px) and (max-width: 430px) {
+  @media screen and (min-width: 0px) and (max-width: 1200px) {
     #equalizer { visibility: hidden; }
 
   }
@@ -88,7 +88,7 @@
     #equalizer { visibility: show; }   
   }
 
-  @media screen and (min-width: 0px) and (max-width: 430px) {
+  @media screen and (min-width: 0px) and (max-width: 1200px) {
     #equalizer2 { visibility: hidden; }
 
   }

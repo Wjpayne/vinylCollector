@@ -5,7 +5,7 @@ import Featured from "./Featured";
 import NewReleases from "./NewReleases";
 import BandCampCarousel from "./BandCampCarousel"
 
-const articleStyles = makeStyles(() => ({
+const articleStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "black",
     width: "100%",
@@ -14,6 +14,10 @@ const articleStyles = makeStyles(() => ({
   newReleases: {
     marginTop: "100px",
   },
+
+  grid: {
+  
+  }
 }));
 
 export default function Articles() {
@@ -26,10 +30,10 @@ export default function Articles() {
           container
           alignItems="center"
           justify="center"
-          spacing={8}
+          
         >
           <Hidden smDown>
-          <Grid item xs={4} lg={3} xl={3}>
+          <Grid item xs={12} lg={3} xl={3}>
             <Bandcamp />
           </Grid>
           </Hidden>

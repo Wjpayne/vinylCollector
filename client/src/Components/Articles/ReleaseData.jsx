@@ -1,12 +1,12 @@
 export const releases = [
     {
-      date: "01/22/2021",
+      date: "01/22/21",
       band: "Wardruna",
       album: "Kvitravn",
       label: "(Sony Music)",
     },
     {
-        date: "01/22/2021",
+        date: "01/22/21",
         band: "Nervosa",
         album: "Perpetual Chaos",
         label: "(Napalm Records)",
@@ -20,33 +20,27 @@ export const releases = [
 
     },
     {
-        date: "01/22/2021",
+        date: "01/22/21",
         band: "Coffins",
         album: "Defilements",
         label: "(Horror Pain Gore Death Productions)",
 
     },
     {
-        date: "01/22/2021",
+        date: "01/22/21",
         band: "Bolt Thrower",
         album: "Honour Valour Pride (Vinyl)",
         label: "(Metal Blade Records)",
 
     },
     {
-        date: "01/22/2021",
+        date: "01/22/21",
         band: "Bolt Thrower",
         album: "Mercenary (Vinyl)",
         label: "(Metal Blade Records)",
 
     },
-    {
-        date: "01/22/2021",
-        band: "Wardruna",
-        album: "Kvitravn",
-        label: "(Sony Music)",
 
-    },
     {
         date: "01/15/21",
         band: "Thrice",

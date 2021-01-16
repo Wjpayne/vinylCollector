@@ -13,6 +13,7 @@ const mainStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "black",
     margin: "auto",
+    height: "2500px"
   },
   container: {
     width: "100%",
@@ -55,7 +56,7 @@ const mainStyles = makeStyles((theme) => ({
       color: "white",
     },
     [theme.breakpoints.down("xs")]: {
-      top: "20%",
+      top: "850px",
       position: "absolute",
     },
   },
