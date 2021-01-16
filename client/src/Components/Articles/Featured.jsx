@@ -106,7 +106,7 @@ function Item(props) {
       <Grid container>
         <Grid item xs={6}>
           <img
-            alt="vinyl or album cover"
+            alt = "vinyl or album cover"
             className={classes.image}
             src={props.item.image}
           ></img>
