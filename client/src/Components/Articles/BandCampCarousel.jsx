@@ -13,7 +13,7 @@ const featuredStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       height: "600px",
     },
-    marginTop: "150px"
+    marginTop: "150px",
   },
 
   image: {
@@ -100,37 +100,32 @@ const featuredStyles = makeStyles((theme) => ({
   },
 
   bandcampMobile: {
-
-    marginTop: "20px"
-  }
-
-  
+    marginTop: "20px",
+  },
 }));
 
 export default function Featured() {
+  var items = [
+    {
+      album: "3240541995",
+    },
 
-    var items = [
-        {
-            album: "3240541995"
-
-        },
-
-        {
-            album: "4150343011"
-        },
-        {
-            album: "1250670259"
-        },
-        {
-            album: "2079579668"
-        },
-        {
-            album: "2636761936"
-        },
-        {
-            album: "14353457"
-        },
-    ]
+    {
+      album: "4150343011",
+    },
+    {
+      album: "1250670259",
+    },
+    {
+      album: "2079579668",
+    },
+    {
+      album: "2636761936",
+    },
+    {
+      album: "14353457",
+    },
+  ];
 
   return (
     <Carousel autoPlay={false} swipe={true}>
@@ -144,46 +139,35 @@ export default function Featured() {
 function Item(props) {
   const classes = featuredStyles();
   return (
-      
     <Paper className={classes.paper}>
       <h1 className={classes.title}>Staff Favorites</h1>
       <Divider className={classes.divider} />
-      <Grid container justify = "center">
-
-          <Hidden xsDown>
-        <Grid item xs={6}>
-
-        <div className={classes.bandcampLeft}>
-            <BandcampPlayer
-              album= {props.item.album}
-              size="large"
-              artwork="big"
-              height="300px"
-            />
-          </div>
+      <Grid container justify="center">
+        <Hidden xsDown>
+          <Grid item xs={6}>
+            <div className={classes.bandcampLeft}>
+              <BandcampPlayer
+                album={props.item.album}
+                size="large"
+                artwork="big"
+                height="300px"
+              />
+            </div>
           </Grid>
+        </Hidden>
 
-      </Hidden>
-
-
-
-      <Hidden smUp>
-
-      <div className={classes.bandcampMobile}>
+        <Hidden smUp>
+          <div className={classes.bandcampMobile}>
             <BandcampPlayer
-              album= {props.item.album}
-              size="large"
-              artwork="large"
-              height="600px"
-              width = "230px"
+              album={props.item.album}
+           
+              artwork="big"
+              height="500px"
+              width="250px"
             />
           </div>
-
-
-
-      </Hidden>
+        </Hidden>
       </Grid>
     </Paper>
-    
   );
 }
