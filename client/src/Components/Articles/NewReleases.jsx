@@ -8,7 +8,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     height: "540px",
     overflow: "hidden",
-    backgroundColor: "white",
+ 
     [theme.breakpoints.down("xs")]: {
       height: "675px",
     },
@@ -18,50 +18,72 @@ const newReleaseStyles = makeStyles((theme) => ({
     fontSize: "17px",
     color: "#989898",
     marginLeft: "30px",
+    cursor: "default",
   },
   divider: {
-    borderTop: "1px solid",
-    width: "100%",
+    borderTop: ".5px solid",
+    width: "98%",
     position: "relative",
-  },
-
-  bold: {
-    fontSize: "17px",
+    left: "1%",
+    color: "lightgrey",
   },
 
   div: {
     overflow: "scroll",
     borderRadius: "5px",
-    height: "540px"
+    height: "540px",
+  },
+
+  title: {
+    color: "white",
+    textAlign: "center",
+    cursor: "default",
+  },
+
+  titleDiv: {
+    color: "grey",
+    borderTop: "10px",
+    position: "relative",
+  },
+
+  bold: {
+    fontSize: "17px",
+    cursor: "default",
   }
+  
 }));
 
 export default function NewReleases() {
   const classes = newReleaseStyles();
 
   return (
-    <div className={classes.div}>
-      {releases.map((item, i) => (
-        <Paper>
-          <div>
-            <Grid key={i} container direction="row" spacing={2}>
-              <Grid item xs={3}>
-                <h1 className={classes.date}>{item.date}</h1>
-              </Grid>
+    <div>
+      <h1 className={classes.title}>New Releases</h1>
+      
 
-              <Grid item xs={3}>
-                <h1 className={classes.bold}>{item.band}</h1>
+      <div className={classes.div}>
+        {releases.map((item, i) => (
+          <Paper>
+            <div>
+              <Grid key={i} container direction="row" spacing={2}>
+                <Grid item xs={3} className={classes.grid}>
+                  <h1 className={classes.date}>{item.date}</h1>
+                </Grid>
+                <Grid item xs={3}>
+                  <h1 className={classes.bold}>{item.band}</h1>
+                </Grid>
+                <Grid item xs={3}>
+                  <h1 className={classes.bold}>{item.album}</h1>
+                </Grid>
+                <Grid item xs={3}>
+                  <h1 className={classes.date}>{item.label}</h1>
+                </Grid>
               </Grid>
-              <Grid item xs={3}>
-                <h1 className={classes.bold}>{item.album}</h1>
-              </Grid>
-              <Grid item xs={3}>
-                <h1 className={classes.date}>{item.label}</h1>
-              </Grid>
-            </Grid>
-          </div>
-        </Paper>
-      ))}
+              <Divider className={classes.divider} varitant="middle" />
+            </div>
+          </Paper>
+        ))}
+      </div>
     </div>
   );
 }
