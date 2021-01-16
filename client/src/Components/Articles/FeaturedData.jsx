@@ -18,7 +18,7 @@ export const items = [
 
   {
     image:
-      "https://www.angryyoungandpoor.com/store/pc/catalog/products/lp/EPT877191BLUlp.jpg",
+      "https://www.transcendedmusic.de/wp-content/uploads/2020/07/0020972856_10-991x1024.jpg",
     artist: "Gulch",
     album: "Impenetrable Cerebral Fortress",
     description:
