@@ -66,6 +66,7 @@ export default function Bandcamp() {
   const classes = bandCampStyles();
   return (
     <div className={classes.div}>
+      
       <Paper className={classes.paper}>
         <div className={classes.scroll}>
           <div className={classes.bandcampLeft}>
@@ -119,6 +120,7 @@ export default function Bandcamp() {
           </div>
         </div>
       </Paper>
+      
     </div>
   );
 }

@@ -19,6 +19,10 @@ const newReleaseStyles = makeStyles((theme) => ({
     color: "#989898",
     marginLeft: "30px",
     cursor: "default",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
+      marginLeft: "2px"
+    },
   },
   divider: {
     borderTop: ".5px solid",
@@ -49,19 +53,27 @@ const newReleaseStyles = makeStyles((theme) => ({
   bold: {
     fontSize: "17px",
     cursor: "default",
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "15px",
   },
+  
+  },
+
+  
 }));
 
 export default function NewReleases() {
   const classes = newReleaseStyles();
 
   return (
-    <div>
+    
+    <div className = {classes.hide}>
       <h1 className={classes.title}>New Releases</h1>
 
       <div className={classes.div}>
         {releases.map((item, i) => (
-          <Paper>
+          
+          <Paper key = {i}>
             <div>
               <Grid key={i} container direction="row" spacing={2}>
                 <Grid item xs={3} className={classes.grid}>
@@ -80,8 +92,10 @@ export default function NewReleases() {
               <Divider className={classes.divider} varitant="middle" />
             </div>
           </Paper>
+          
         ))}
       </div>
     </div>
+    
   );
 }
