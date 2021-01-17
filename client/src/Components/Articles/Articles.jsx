@@ -35,7 +35,7 @@ export default function Articles() {
         </Hidden>
 
         <Hidden smDown>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm = {10} md = {7} lg = {5} xl = {4}>
             <Featured />
             <div className={classes.newReleases}>
               <NewReleases />

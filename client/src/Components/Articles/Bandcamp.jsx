@@ -18,13 +18,7 @@ const bandCampStyles = makeStyles((theme) => ({
     color: "#989898",
     marginLeft: "30px",
   },
-  divider: {
-    borderTop: ".5px solid",
-    width: "98%",
-    position: "relative",
-    left: "1%",
-    color: "lightgrey",
-  },
+
 
   bold: {
     fontSize: "17px",

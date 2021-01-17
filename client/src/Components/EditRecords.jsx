@@ -82,11 +82,11 @@ export default function EditRecords({
       description: editDescription,
     };
     await axios
-      .post("record/update/" + editUserId, editUser, authToken)
+      .post("http://localhost:5000/record/update/" + editUserId, editUser, authToken)
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {
-      const result = await axios.get("record/get", {
+      const result = await axios.get("http://localhost:5000/record/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token")},
       });
       editNewRecordData(result.data);

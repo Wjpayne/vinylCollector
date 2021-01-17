@@ -14,6 +14,29 @@ router.get("/get", auth, async(req,res) =>{
 router.post("/add", auth, async(req,res) =>{
   try {
 
+    const { title, artist, rating, genre, description, favorite } = req.body;
+
+    const newRecord = new Record({
+      userId: req.user,
+      title,
+      artist,
+      rating,
+      genre,
+      description,
+      favorite
+      
+    })
+    const savedRecords = await newRecord.save();
+    res.json(savedRecords)
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
+router.post("/add/favorite", auth, async(req,res) =>{
+  try {
+
     const { title, artist, rating, genre, description } = req.body;
 
     const newRecord = new Record({
@@ -22,7 +45,8 @@ router.post("/add", auth, async(req,res) =>{
       artist,
       rating,
       genre,
-      description
+      description,
+      favorite
     })
     const savedRecords = await newRecord.save();
     res.json(savedRecords)
@@ -59,6 +83,7 @@ router.route("/update/:id").post((req, res) => {
       records.rating = req.body.rating;
       records.genre = req.body.genre;
       records.description = req.body.description;
+      records.favorite = req.body.description;
 
       records
         .save()

@@ -10,7 +10,9 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
-
+import StarOutlineIcon from "@material-ui/icons/StarOutline";
+import { IconButton } from "@material-ui/core";
+import StarRateIcon from "@material-ui/icons/StarRate";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -38,21 +40,24 @@ const recordFormStyles = makeStyles((theme) => ({
     },
   },
 
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    width: "40vh",
-    height: "45vh",
-    left: "50%",
-    position: "absolute",
-    outline: "none",
-    transform: "translateX(-50%)",
-    top: "20%",
+  favoriteOff: {
+    float: "right",
+    bottom: "-123px",
   },
 
-  cancelButton: {
+  favoriteOn: {
     float: "right",
+    bottom: "-123px",
+  },
+
+  favoriteYellow: {
+    fontSize: "40px",
+    color: "#ffb81c",
+  },
+
+  favoriteGrey: {
+    fontSize: "40px",
+    color: "grey",
   },
 }));
 
@@ -82,7 +87,9 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
+  //set state for favorite icon
 
+  const [favorite, setFavorite] = React.useState(false);
 
   //functions to control state
 
@@ -98,30 +105,24 @@ export default function ShowRecords() {
     handleEditModal();
   };
 
-  
-
-
-
   //fetch record data
 
   const fetchData = async () => {
-    const result = await axios.get("record/get", authToken);
+    const result = await axios.get(
+      "http://localhost:5000/record/get",
+      authToken
+    );
     newRecordData(result.data);
     console.log(result.data);
   };
 
   React.useEffect(() => {
-
     fetchData();
 
     console.log("data");
   }, []);
 
-
-    // see if user is logged in already, if not set a token and userData
-
-
-  
+  // see if user is logged in already, if not set a token and userData
 
   // delete records
 
@@ -135,10 +136,12 @@ export default function ShowRecords() {
       description: newRecords.description,
     };
 
-    await axios.delete("/record/" + _id, deleteRecords).then((result) => {
-      const refresh = newRecords.filter((result) => result._id !== _id);
-      newRecordData(refresh);
-    });
+    await axios
+      .delete("http://localhost:5000/record/" + _id, deleteRecords)
+      .then((result) => {
+        const refresh = newRecords.filter((result) => result._id !== _id);
+        newRecordData(refresh);
+      });
   };
 
   //functions for controlling edit record state
@@ -150,9 +153,19 @@ export default function ShowRecords() {
     setRating(rating);
     setGenre(genre);
     setDescription(description);
-
     handleEditModal(true);
+
+    console.log(title);
   };
+
+  //functions for setting favorite state and color and post request to add favorite
+
+  const deleteFavorite = (e) => {
+    e.preventDefault();
+    setFavorite(false);
+  };
+
+  // post request to add favorite
 
   return (
     <div>
@@ -196,6 +209,25 @@ export default function ShowRecords() {
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
                 <Card className={classes.root} key={element.userId}>
                   <CardContent className={classes.card}>
+                    {favorite ? (
+                      <IconButton
+                        onClick={deleteFavorite}
+                        className={classes.favoriteOn}
+                      >
+                        {" "}
+                        <StarRateIcon className={classes.favoriteYellow} />
+                      </IconButton>
+                    ) : (
+                      <IconButton
+                        // onClick={handleFavorite}
+                        className={classes.favoriteOff}
+                      >
+                        {" "}
+                        <StarOutlineIcon
+                          className={classes.favoriteGrey}
+                        />{" "}
+                      </IconButton>
+                    )}
                     <Typography gutterBottom variant="h6">
                       {element.title}
                     </Typography>
@@ -246,12 +278,3 @@ export default function ShowRecords() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
