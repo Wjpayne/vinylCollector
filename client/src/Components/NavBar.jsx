@@ -22,6 +22,7 @@ import Login from "./Login";
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
 import { useHistory } from "react-router-dom"
+import Favorites from "./Favorites";
 
 const drawerWidth = 240;
 
@@ -165,8 +166,17 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, drawerOpen] = React.useState(false);
+  const [favoriteOpen, openFavorite] = React.useState(false)
 
   // handle functions for state
+
+  //open Modals
+
+  const handleFavoriteModal = () => {
+
+    openFavorite(!favoriteOpen)
+    
+  }
 
   const handleOpen = () => {
     setModalOpen(!isModalOpen);
@@ -310,7 +320,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
           )}
 
           {userData.user ? (
-            <ListItem button>
+            <ListItem button onClick = {() => handleFavoriteModal(true)}>
               <ListItemIcon>
                 {" "}
                 <FavoriteIcon />
@@ -323,6 +333,8 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
         </List>
         <Divider />
       </Drawer>
+
+      <Favorites closeDrawer = {open} drawerClose = {drawerOpen} favoriteIsOpen = {favoriteOpen} handleOpen = {openFavorite}/>
 
       <Login handleCloseModal={() => setModalOpen(false)}></Login>
     </div>

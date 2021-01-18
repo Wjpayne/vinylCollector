@@ -13,11 +13,6 @@ import Backdrop from "@material-ui/core/Backdrop";
 import { authToken }  from "./AuthToken"
 
 const editFormStyles = makeStyles((theme) => ({
-  cardsContainer: {
-    backgroundColor: "black",
-    color: "black",
-    paddingTop: "100px",
-  },
 
   addButton: {
     backgroundColor: "white",
@@ -28,7 +23,7 @@ const editFormStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "black",
       color: "white",
-    },
+    }
   },
 
   paper: {

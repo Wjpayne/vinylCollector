@@ -14,7 +14,7 @@ router.get("/get", auth, async(req,res) =>{
 router.post("/add", auth, async(req,res) =>{
   try {
 
-    const { title, artist, rating, genre, description, favorite } = req.body;
+    const { title, artist, rating, genre, description } = req.body;
 
     const newRecord = new Record({
       userId: req.user,
@@ -23,7 +23,7 @@ router.post("/add", auth, async(req,res) =>{
       rating,
       genre,
       description,
-      favorite
+      
       
     })
     const savedRecords = await newRecord.save();
@@ -34,27 +34,6 @@ router.post("/add", auth, async(req,res) =>{
   }
 })
 
-router.post("/add/favorite", auth, async(req,res) =>{
-  try {
-
-    const { title, artist, rating, genre, description } = req.body;
-
-    const newRecord = new Record({
-      userId: req.user,
-      title,
-      artist,
-      rating,
-      genre,
-      description,
-      favorite
-    })
-    const savedRecords = await newRecord.save();
-    res.json(savedRecords)
-
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-})
 
 //get records by id
 

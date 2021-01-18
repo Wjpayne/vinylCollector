@@ -13,6 +13,7 @@ import { authToken } from "./AuthToken";
 import StarOutlineIcon from "@material-ui/icons/StarOutline";
 import { IconButton } from "@material-ui/core";
 import StarRateIcon from "@material-ui/icons/StarRate";
+import Favorites from "./Favorites";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,11 @@ const recordFormStyles = makeStyles((theme) => ({
     width: "300px",
     "&:hover": {
       cursor: "pointer",
+    },
+    [theme.breakpoints.down("sm")]: {
+      position: "relative",
+      left: "50%",
+      transform: "translateX(-45%)",
     },
   },
   cardsContainer: {
@@ -89,7 +95,7 @@ export default function ShowRecords() {
 
   //set state for favorite icon
 
-  const [favorite, setFavorite] = React.useState(false);
+  const [favorite, setFavorite] = React.useState([]);
 
   //functions to control state
 
@@ -107,6 +113,13 @@ export default function ShowRecords() {
 
   //fetch record data
 
+  const getFavorite = async () => {
+    let savedFavorite = await localStorage.getItem("favorite");
+    if (savedFavorite) {
+      setFavorite(savedFavorite);
+    }
+  };
+
   const fetchData = async () => {
     const result = await axios.get(
       "http://localhost:5000/record/get",
@@ -116,8 +129,11 @@ export default function ShowRecords() {
     console.log(result.data);
   };
 
+  //check if favorite is in local storage
+
   React.useEffect(() => {
     fetchData();
+    getFavorite();
 
     console.log("data");
   }, []);
@@ -160,16 +176,46 @@ export default function ShowRecords() {
 
   //functions for setting favorite state and color and post request to add favorite
 
-  const deleteFavorite = (e) => {
-    e.preventDefault();
-    setFavorite(false);
+  const deleteFavorite = (_id) => {
+    setFavorite("");
   };
 
   // post request to add favorite
 
+  const handleFavorite = (
+    _id,
+    title,
+    artist,
+    rating,
+    genre,
+    description
+  ) => {
+    const favorites = {
+      _id: _id,
+      title: title,
+      artist: artist,
+      rating: rating,
+      genre: genre,
+      description: description,
+    };
+
+    const addFavorite = () => {
+      axios
+        .post("http://localhost:5000/favorite/add", favorites, authToken)
+        .then((res) => localStorage.setItem("favorite", res.data));
+    };
+
+    addFavorite();
+    setFavorite(title);
+
+    console.log(title);
+  };
+
   return (
     <div>
       {/* set props */}
+
+      <Favorites />
       <AddRecord
         isAddModalOpen={addModalOpen}
         handleIsAddModalClose={handleCloseAddModal}
@@ -207,27 +253,38 @@ export default function ShowRecords() {
           {newRecords.length > 0 &&
             newRecords.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
-                <Card className={classes.root} key={element.userId}>
-                  <CardContent className={classes.card}>
-                    {favorite ? (
-                      <IconButton
-                        onClick={deleteFavorite}
-                        className={classes.favoriteOn}
-                      >
-                        {" "}
-                        <StarRateIcon className={classes.favoriteYellow} />
-                      </IconButton>
-                    ) : (
-                      <IconButton
-                        // onClick={handleFavorite}
-                        className={classes.favoriteOff}
-                      >
-                        {" "}
-                        <StarOutlineIcon
-                          className={classes.favoriteGrey}
-                        />{" "}
-                      </IconButton>
-                    )}
+                <Card className={classes.root}>
+                  <CardContent>
+                    <>
+                      {favorite ? (
+                        <IconButton
+                          onClick={() => deleteFavorite()}
+                          className={classes.favoriteOn}
+                        >
+                          {" "}
+                          <StarRateIcon className={classes.favoriteYellow} />
+                        </IconButton>
+                      ) : (
+                        <IconButton
+                          onClick={() =>
+                            handleFavorite(
+                              element._id,
+                              element.title,
+                              element.artist,
+                              element.rating,
+                              element.genre,
+                              element.description
+                            )
+                          }
+                          className={classes.favoriteOff}
+                        >
+                          {" "}
+                          <StarOutlineIcon
+                            className={classes.favoriteGrey}
+                          />{" "}
+                        </IconButton>
+                      )}
+                    </>
                     <Typography gutterBottom variant="h6">
                       {element.title}
                     </Typography>

@@ -11,7 +11,7 @@ function App() {
   const [userData, setUserData] = React.useState({
     token: undefined,
     user: undefined,
-    favorite: false
+    
 
 
   });

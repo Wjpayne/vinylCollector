@@ -27,9 +27,11 @@ connection.once("open", () => {
 
   const recordRouter = require("./Routes/RecordRoute");
   const usersRouter = require("./Routes/UserRoute");
+  const favoriteRouter = require("./Routes/FavoriteRoute");
 
   app.use("/record", recordRouter);
   app.use("/users", usersRouter);
+  app.use("/favorite", favoriteRouter)
 });
 
 

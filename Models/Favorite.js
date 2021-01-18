@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const recordSchema = new Schema(
+const favoriteSchema = new Schema(
   {
     userId: { type: String },
     title: { type: String },
@@ -16,6 +16,6 @@ const recordSchema = new Schema(
   }
 );
 
-const Records = mongoose.model("Record", recordSchema);
+const Favorite = mongoose.model("favorite", favoriteSchema);
 
-module.exports = Records;
+module.exports = Favorite;
