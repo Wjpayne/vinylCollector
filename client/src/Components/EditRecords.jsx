@@ -77,7 +77,7 @@ export default function EditRecords({
       description: editDescription,
     };
     await axios
-      .post("/update/" + editUserId, editUser, authToken)
+      .post("record/update/" + editUserId, editUser, authToken)
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {

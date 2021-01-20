@@ -98,7 +98,7 @@ export default function ShowRecords() {
 
   const fetchData = async () => {
     const result = await axios.get(
-      "record/get",
+      "/record/get",
       authToken
     );
     newRecordData(result.data);
@@ -116,7 +116,7 @@ export default function ShowRecords() {
     };
 
     await axios
-      .delete("/record" + _id, deleteRecords)
+      .delete("/record/" + _id, deleteRecords)
       .then((result) => {
         const refresh = newRecords.filter((result) => result._id !== _id);
         newRecordData(refresh);

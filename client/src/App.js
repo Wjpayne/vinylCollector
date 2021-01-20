@@ -29,7 +29,7 @@ function App() {
         }
       );
       if (tokenRes.data) {
-        const userRes = await axios.get("/", {
+        const userRes = await axios.get("/users", {
           headers: { "x-auth-token": token },
         });
         setUserData({
