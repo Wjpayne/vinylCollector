@@ -22,7 +22,7 @@ function App() {
         token = "";
       }
       const tokenRes = await axios.post(
-        "/tokenIsValid",
+        "/users/tokenIsValid",
         null,
         {
           headers: { "x-auth-token": token },
