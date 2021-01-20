@@ -69,7 +69,7 @@ export default function FavoriteButton({
     };
 
     axios
-      .post("/add", favorites, authToken)
+      .post("/favorite/add", favorites, authToken)
       .then((response) => {
         setFavorite(response);
       });

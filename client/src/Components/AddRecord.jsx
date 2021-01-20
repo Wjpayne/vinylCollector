@@ -97,7 +97,7 @@ export default function AddRecord({
     };
 
     await axios
-      .post("http://localhost:5000/record/add", records, authToken)
+      .post("/record/add", records, authToken)
       .then((response) => {
         addRecordData({
           userId: "",
@@ -112,7 +112,7 @@ export default function AddRecord({
     //refresh data
 
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:5000/record/get", authToken);
+      const result = await axios.get("/record/get", authToken);
       refreshRecordData(result.data);
     };
 

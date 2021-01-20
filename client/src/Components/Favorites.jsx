@@ -95,7 +95,7 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
 
   const fetchData = async () => {
     const result = await axios.get(
-      "/get",
+      "/favorite/get",
       authToken
     );
     setFavoriteRecords(result.data);

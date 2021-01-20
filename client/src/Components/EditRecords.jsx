@@ -81,7 +81,7 @@ export default function EditRecords({
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {
-      const result = await axios.get("/get", {
+      const result = await axios.get("/record/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token")},
       });
       editNewRecordData(result.data);
