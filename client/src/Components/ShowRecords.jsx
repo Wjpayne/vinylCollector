@@ -10,14 +10,12 @@ import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "./AuthToken";
-import StarOutlineIcon from "@material-ui/icons/StarOutline";
-import { IconButton } from "@material-ui/core";
-import StarRateIcon from "@material-ui/icons/StarRate";
 import Favorites from "./Favorites";
+import FavoriteButtonRecord from "./FavoriteButton";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
-    height: "225px",
+    height: "260px",
     width: "300px",
     "&:hover": {
       cursor: "pointer",
@@ -46,30 +44,17 @@ const recordFormStyles = makeStyles((theme) => ({
     },
   },
 
-  favoriteOff: {
-    float: "right",
-    bottom: "-123px",
-  },
-
-  favoriteOn: {
-    float: "right",
-    bottom: "-123px",
-  },
-
-  favoriteYellow: {
-    fontSize: "40px",
-    color: "#ffb81c",
-  },
-
-  favoriteGrey: {
-    fontSize: "40px",
-    color: "grey",
-  },
+  button: {
+    float: "left",
+    bottom: "-210px"
+  }
 }));
 
 export default function ShowRecords() {
   const classes = recordFormStyles();
   const url = " http://localhost:5000/record";
+
+  //get userData state to use in useEffect
 
   //set state for showing records in database and opening/closing modals
 
@@ -95,8 +80,6 @@ export default function ShowRecords() {
 
   //set state for favorite icon
 
-  const [favorite, setFavorite] = React.useState([]);
-
   //functions to control state
 
   const handleAddModalOpen = () => {
@@ -113,47 +96,27 @@ export default function ShowRecords() {
 
   //fetch record data
 
-  const getFavorite = async () => {
-    let savedFavorite = await localStorage.getItem("favorite");
-    if (savedFavorite) {
-      setFavorite(savedFavorite);
-    }
-  };
-
   const fetchData = async () => {
     const result = await axios.get(
-      "http://localhost:5000/record/get",
+      "/get",
       authToken
     );
     newRecordData(result.data);
-    console.log(result.data);
   };
-
-  //check if favorite is in local storage
 
   React.useEffect(() => {
     fetchData();
-    getFavorite();
-
-    console.log("data");
   }, []);
-
-  // see if user is logged in already, if not set a token and userData
 
   // delete records
 
   const deleteRecord = async (_id) => {
     const deleteRecords = {
-      _id: newRecords._id,
-      title: newRecords.title,
-      artist: newRecords.artist,
-      rating: newRecords.rating,
-      genre: newRecords.genre,
-      description: newRecords.description,
+      _id: _id,
     };
 
     await axios
-      .delete("http://localhost:5000/record/" + _id, deleteRecords)
+      .delete("/" + _id, deleteRecords)
       .then((result) => {
         const refresh = newRecords.filter((result) => result._id !== _id);
         newRecordData(refresh);
@@ -175,41 +138,6 @@ export default function ShowRecords() {
   };
 
   //functions for setting favorite state and color and post request to add favorite
-
-  const deleteFavorite = (_id) => {
-    setFavorite("");
-  };
-
-  // post request to add favorite
-
-  const handleFavorite = (
-    _id,
-    title,
-    artist,
-    rating,
-    genre,
-    description
-  ) => {
-    const favorites = {
-      _id: _id,
-      title: title,
-      artist: artist,
-      rating: rating,
-      genre: genre,
-      description: description,
-    };
-
-    const addFavorite = () => {
-      axios
-        .post("http://localhost:5000/favorite/add", favorites, authToken)
-        .then((res) => localStorage.setItem("favorite", res.data));
-    };
-
-    addFavorite();
-    setFavorite(title);
-
-    console.log(title);
-  };
 
   return (
     <div>
@@ -254,36 +182,50 @@ export default function ShowRecords() {
             newRecords.map((element) => (
               <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
                 <Card className={classes.root}>
-                  <CardContent>
+                  <CardContent className={classes.content}>
                     <>
-                      {favorite ? (
-                        <IconButton
-                          onClick={() => deleteFavorite()}
-                          className={classes.favoriteOn}
-                        >
-                          {" "}
-                          <StarRateIcon className={classes.favoriteYellow} />
-                        </IconButton>
-                      ) : (
-                        <IconButton
-                          onClick={() =>
-                            handleFavorite(
-                              element._id,
-                              element.title,
-                              element.artist,
-                              element.rating,
-                              element.genre,
-                              element.description
-                            )
-                          }
-                          className={classes.favoriteOff}
-                        >
-                          {" "}
-                          <StarOutlineIcon
-                            className={classes.favoriteGrey}
-                          />{" "}
-                        </IconButton>
-                      )}
+                      <Button
+                        onClick={() =>
+                          editRecord(
+                            element._id,
+                            element.title,
+                            element.artist,
+                            element.rating,
+                            element.genre,
+                            element.description
+                          )
+                        }
+                        size="small"
+                        color="inherit"
+                        className={classes.button}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          deleteRecord(
+                            element._id,
+                            element.title,
+                            element.artist,
+                            element.rating,
+                            element.genre,
+                            element.description
+                          )
+                        }
+                        size="small"
+                        color="inherit"
+                        className={classes.button}
+                      >
+                        Delete
+                      </Button>
+                      <FavoriteButtonRecord
+                        key={element._id}
+                        title={element.title}
+                        artist={element.artist}
+                        rating={element.rating}
+                        genre={element.genre}
+                        description={element.description}
+                      />
                     </>
                     <Typography gutterBottom variant="h6">
                       {element.title}
@@ -292,7 +234,7 @@ export default function ShowRecords() {
                       Artist: {element.artist}
                     </Typography>
                     <Typography variant="body2" color="inherit" component="p">
-                      Rating: {element.rating}
+                      Label: {element.rating}
                     </Typography>
                     <Typography variant="body2" color="inherit" component="p">
                       Genre: {element.genre}
@@ -302,31 +244,7 @@ export default function ShowRecords() {
                     </Typography>
                   </CardContent>
 
-                  <CardActions>
-                    <Button
-                      onClick={() =>
-                        editRecord(
-                          element._id,
-                          element.title,
-                          element.artist,
-                          element.rating,
-                          element.genre,
-                          element.description
-                        )
-                      }
-                      size="small"
-                      color="inherit"
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      onClick={() => deleteRecord(element._id)}
-                      size="small"
-                      color="inherit"
-                    >
-                      Delete
-                    </Button>
-                  </CardActions>
+                  <CardActions></CardActions>
                 </Card>
               </Grid>
             ))}

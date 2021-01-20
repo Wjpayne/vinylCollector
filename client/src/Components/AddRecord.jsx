@@ -93,7 +93,7 @@ export default function AddRecord({
       rating: addRecord.rating,
       genre: addRecord.genre,
       description: addRecord.description,
-      favorite: false
+      
     };
 
     await axios
@@ -182,7 +182,7 @@ export default function AddRecord({
               margin="normal"
               fullWidth
               id="rating "
-              label="Rating"
+              label="Label"
               name="rating"
               autoComplete="rating"
               autoFocus

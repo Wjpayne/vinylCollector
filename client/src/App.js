@@ -6,14 +6,10 @@ import UserContext from "./Components/UserContext";
 import SearchResults from "./Components/SearchResults";
 import axios from "axios";
 
-
 function App() {
   const [userData, setUserData] = React.useState({
     token: undefined,
     user: undefined,
-    
-
-
   });
 
   // see if user is logged in already, if not set a token and userData
@@ -25,11 +21,15 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenRes = await axios.post("http://localhost:5000/users/tokenIsValid", null, {
-        headers: { "x-auth-token": token },
-      });
+      const tokenRes = await axios.post(
+        "/tokenIsValid",
+        null,
+        {
+          headers: { "x-auth-token": token },
+        }
+      );
       if (tokenRes.data) {
-        const userRes = await axios.get("http://localhost:5000/users", {
+        const userRes = await axios.get("/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -43,7 +43,7 @@ function App() {
   }, [userData.token]);
 
   return (
-    <div className="App" >
+    <div className="App">
       <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>

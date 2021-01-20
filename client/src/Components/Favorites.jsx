@@ -6,7 +6,6 @@ import {
   Backdrop,
   Fade,
   IconButton,
- 
 } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
@@ -15,6 +14,7 @@ import React from "react";
 import axios from "axios";
 import { authToken } from "./AuthToken";
 import { CssBaseline } from "@material-ui/core";
+import DeleteFavoriteButton from "./DeleteFavoriteButton";
 
 const favoriteStyles = makeStyles((theme) => ({
   root: {
@@ -84,8 +84,6 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
 
   const [favoriteRecords, setFavoriteRecords] = React.useState([]);
 
- 
-
   //handle modal close
 
   const handleModalClose = () => {
@@ -97,19 +95,18 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
 
   const fetchData = async () => {
     const result = await axios.get(
-      "http://localhost:5000/favorite/get",
+      "/get",
       authToken
     );
     setFavoriteRecords(result.data);
     console.log(result);
-    
   };
 
   React.useEffect(() => {
     fetchData();
 
     console.log("data");
-  }, []);
+  }, [favoriteIsOpen]);
 
   return (
     <Modal
@@ -153,6 +150,14 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
                   <Card className={classes.root}>
                     <CardContent className={classes.card}>
                       <>
+                        <DeleteFavoriteButton
+                          title={element.title}
+                          favoriteRecords={favoriteRecords}
+                          setFavoriteRecords={setFavoriteRecords}
+                        />
+                      </>
+
+                      <>
                         <Typography gutterBottom variant="h6">
                           {element.title}
                         </Typography>
@@ -168,7 +173,7 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
                           color="inherit"
                           component="p"
                         >
-                          Rating: {element.rating}
+                          Label: {element.rating}
                         </Typography>
                         <Typography
                           variant="body2"

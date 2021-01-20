@@ -77,11 +77,11 @@ export default function EditRecords({
       description: editDescription,
     };
     await axios
-      .post("http://localhost:5000/record/update/" + editUserId, editUser, authToken)
+      .post("/update/" + editUserId, editUser, authToken)
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:5000/record/get", {
+      const result = await axios.get("/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token")},
       });
       editNewRecordData(result.data);
@@ -153,7 +153,7 @@ export default function EditRecords({
                 margin="normal"
                 fullWidth
                 id="rating "
-                label="Rating"
+                label="Label"
                 name="rating"
                 autoComplete="rating"
                 autoFocus
