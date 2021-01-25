@@ -7,11 +7,12 @@ const newReleaseStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "white",
     height: "540px",
-    overflow: "hidden",
+    overflow: "auto",
 
     [theme.breakpoints.down("xs")]: {
       height: "675px",
     },
+    overflowX: "hidden"
   },
 
   date: {
