@@ -33,7 +33,7 @@ const newReleaseStyles = makeStyles((theme) => ({
   },
 
   div: {
-    overflow: "scroll",
+    overflow: "auto",
     borderRadius: "5px",
     height: "540px",
   },

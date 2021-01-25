@@ -67,7 +67,7 @@ const featuredStyles = makeStyles((theme) => ({
   divDesc: {
     position: "relative",
     justifyContent: "center",
-    overflow: "scroll",
+    overflow: "auto",
     height: "500px",
   },
 
