@@ -31,11 +31,12 @@ const registerFormStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: "40vh",
-    maxHeight: "60vh",
+    maxHeight: "70vh",
     left: "50%",
     position: "absolute",
     outline: "none",
     transform: "translateX(-50%)",
+    overflow: "auto"
   },
 
   container: {
