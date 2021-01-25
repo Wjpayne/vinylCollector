@@ -37,6 +37,7 @@ const newReleaseStyles = makeStyles((theme) => ({
     overflow: "auto",
     borderRadius: "5px",
     height: "540px",
+    overflowX: "hidden"
   },
 
   title: {
