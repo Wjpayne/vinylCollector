@@ -86,7 +86,7 @@ export default function NewReleases() {
                 <Grid item xs={3}>
                   <h1 className={classes.bold}>{item.album}</h1>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <h1 className={classes.date}>{item.label}</h1>
                 </Grid>
               </Grid>
