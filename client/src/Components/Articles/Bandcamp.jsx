@@ -36,6 +36,7 @@ const bandCampStyles = makeStyles((theme) => ({
     overflowY: "hidden !important",
     "&:hover": {
     overflowY: "auto !important"
+    }
   },
 
   title: {
