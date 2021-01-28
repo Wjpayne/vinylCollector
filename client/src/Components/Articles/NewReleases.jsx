@@ -76,7 +76,7 @@ export default function NewReleases() {
         {releases.map((item, i) => (
           
           <Paper key = {i}>
-            <div>
+            <div >
               <Grid key={i} container direction="row" spacing={2}>
                 <Grid item xs={3} className={classes.grid}>
                   <h1 className={classes.date}>{item.date}</h1>
