@@ -179,6 +179,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
               >
                 Sign In
               </Button>
+              <p>Sign in with <strong>Email:</strong> user@user.com <strong>Password: </strong> password to see a demo</p>
               <Grid container>
                 <Grid item xs>
                   <Button className={classes.signInButton}>
