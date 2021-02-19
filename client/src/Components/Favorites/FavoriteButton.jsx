@@ -2,7 +2,7 @@ import React from "react";
 // import StarOutlineIcon from "@material-ui/icons/StarOutline";
 import { Button, makeStyles } from "@material-ui/core";
 // import StarRateIcon from "@material-ui/icons/StarRate";
-import { authToken } from "./AuthToken";
+import { authToken } from "../utils/AuthToken";
 import axios from "axios";
 
 const buttonStyles = makeStyles((theme) => ({

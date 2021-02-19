@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import axios from "axios";
-import { authToken } from "./AuthToken";
+import { authToken } from "../utils/AuthToken";
 import { CssBaseline } from "@material-ui/core";
 import DeleteFavoriteButton from "./DeleteFavoriteButton";
 

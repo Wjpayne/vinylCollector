@@ -9,9 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
-import { authToken } from "./AuthToken";
-import Favorites from "./Favorites";
-import FavoriteButtonRecord from "./FavoriteButton";
+import { authToken } from "../utils/AuthToken";
+import Favorites from "../Favorites/Favorites";
+import FavoriteButtonRecord from "../Favorites/FavoriteButton";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {

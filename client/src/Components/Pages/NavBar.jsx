@@ -18,11 +18,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PersonIcon from "@material-ui/icons/Person";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Button from "@material-ui/core/Button";
-import Login from "./Login";
+import Login from "../Login/Login";
 import { Link } from "react-router-dom";
-import UserContext from "./UserContext";
+import UserContext from "../UserContext";
 import { useHistory } from "react-router-dom"
-import Favorites from "./Favorites";
+import Favorites from "../Favorites/Favorites";
 
 const drawerWidth = 240;
 

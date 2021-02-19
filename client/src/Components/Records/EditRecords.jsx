@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import { authToken }  from "./AuthToken"
+import { authToken }  from "../utils/AuthToken"
 
 const editFormStyles = makeStyles((theme) => ({
 
@@ -77,7 +77,7 @@ export default function EditRecords({
       description: editDescription,
     };
     await axios
-      .post("record/update/" + editUserId, editUser, authToken)
+      .post("/record/update/" + editUserId, editUser, authToken)
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {

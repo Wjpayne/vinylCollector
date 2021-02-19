@@ -3,11 +3,11 @@ import { makeStyles, fade } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
-import Svg from "./SVG/EqualizerSVG";
-import Svg2 from "./SVG/EqualizerSVG2";
+import Svg from "../SVG/EqualizerSVG";
+import Svg2 from "../SVG/EqualizerSVG2";
 import NavBar from "./NavBar";
-import Login from "./Login";
-import Articles from "./Articles/Articles";
+import Login from "../Login/Login";
+import Articles from "../Articles/Articles";
 
 const mainStyles = makeStyles((theme) => ({
   root: {

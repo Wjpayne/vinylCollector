@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Profile from "./Components/Profile";
-import Main from "./Components/Main";
+import Profile from "./Components/Pages/Profile";
+import Main from "./Components/Pages/Main";
 import UserContext from "./Components/UserContext";
 import SearchResults from "./Components/SearchResults";
 import axios from "axios";

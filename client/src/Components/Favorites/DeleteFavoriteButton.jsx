@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
-import { authToken } from "./AuthToken";
+import { authToken } from "../utils/AuthToken";
 import axios from "axios";
 
 const buttonStyles = makeStyles((theme) => ({

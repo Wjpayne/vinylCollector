@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./NavBar";
+import NavBar from "./Pages/NavBar";
 import { makeStyles } from "@material-ui/styles";
 
 const searchStyles = makeStyles((theme) => ({

@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { makeStyles } from "@material-ui/styles";
-import ShowRecords from "./ShowRecords";
+import ShowRecords from "../Records/ShowRecords";
 
 const profileStyles = makeStyles((theme) => ({
   addButton: {
