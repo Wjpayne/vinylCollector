@@ -6,9 +6,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CancelIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
@@ -60,6 +57,11 @@ const loginFormStyles = makeStyles((theme) => ({
   submit: {
     cursor: "pointer",
   },
+
+  registerButton: {
+    left: "50%",
+    transform: "translateX(-50%)",
+  }
 }));
 
 export default function LoginForm({ isLoginOpen, handleCloseModal }) {
@@ -165,10 +167,10 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -180,21 +182,21 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
                 Sign In
               </Button>
               <p>Sign in with <strong>Email:</strong> user@user.com <strong>Password: </strong> password to see a demo</p>
-              <Grid container>
-                <Grid item xs>
+             
+                {/* <Grid item xs>
                   <Button className={classes.signInButton}>
                     Forgot password?
                   </Button>
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                
                   <Button
-                    className={classes.signInButton}
+                    className={classes.registerButton}
                     onClick={handleRegisterOpen}
                   >
-                    {"Sign Up"}
+                    {"Register"}
                   </Button>
-                </Grid>
-              </Grid>
+                
+              
               {error && (
                 <ErrorNotice
                   showError={error}
