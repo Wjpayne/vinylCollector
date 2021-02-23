@@ -80,7 +80,7 @@ const favoriteStyles = makeStyles((theme) => ({
 export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
   const classes = favoriteStyles();
 
-  const url = "http://localhost:5000";
+  // const url = "http://localhost:5000";
 
   //state for favorites
 
@@ -96,7 +96,7 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
   //get favorites on render
 
   const fetchData = async () => {
-    const result = await axios.get(url +
+    const result = await axios.get(
       "/favorite/get",
       authToken
     );
