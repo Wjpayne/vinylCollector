@@ -58,6 +58,8 @@ const registerFormStyles = makeStyles((theme) => ({
 export default function Register({ registerFormOpen, closeRegisterForm }) {
   const classes = registerFormStyles();
 
+  // const url = "http://localhost:5000";
+
   //set State for register form
   
   const [email, setEmail] = React.useState();

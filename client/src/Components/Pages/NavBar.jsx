@@ -161,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar({ isModalOpen, setModalOpen }) {
+export default function NavBar({ isModalOpen, setModalOpen, handleSearch }) {
   // set state
   const classes = useStyles();
   const theme = useTheme();
@@ -233,18 +233,15 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
                   <SearchIcon />
                 </div>
                 <InputBase
-                  placeholder="Search…"
+                  placeholder="Search Artist..."
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
                   }}
                   inputProps={{ "aria-label": "search" }}
+                  onChange = {handleSearch}
                 />
               </div>
-
-              <Button component={Link} to="/search" className={classes.go}>
-                GO
-              </Button>
             </>
           ) : (
             <div></div>
@@ -253,7 +250,7 @@ export default function NavBar({ isModalOpen, setModalOpen }) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {userData.user ? (
-              <Button button onClick={() => logOut()} className={classes.login}>
+              <Button onClick={() => logOut()} className={classes.login}>
                 Log out {userData.user.displayName}
               </Button>
             ) : (

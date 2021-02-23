@@ -18,8 +18,10 @@ remove: {
 
 export default function FavoriteButton( {title, favoriteRecords, setFavoriteRecords} ) {
 
+  const url = "http://localhost:5000";
+
     const deleteFavorite = async () => {
-        axios.delete("/favorite/delete", {
+        axios.delete(url + "/favorite/delete", {
           data: { title: title },
           authToken,
         }).then((result) => { const refresh = favoriteRecords.filter((result) => result.title !== title)

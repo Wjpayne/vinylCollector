@@ -10,6 +10,9 @@ const recordSchema = new Schema(
     rating: { type: String },
     genre: { type: String },
     description: { type: String },
+   
+    
+    
   },
   {
     timestamps: true,

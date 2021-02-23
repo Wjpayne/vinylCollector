@@ -80,6 +80,8 @@ const favoriteStyles = makeStyles((theme) => ({
 export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
   const classes = favoriteStyles();
 
+  const url = "http://localhost:5000";
+
   //state for favorites
 
   const [favoriteRecords, setFavoriteRecords] = React.useState([]);
@@ -94,18 +96,18 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
   //get favorites on render
 
   const fetchData = async () => {
-    const result = await axios.get(
+    const result = await axios.get(url +
       "/favorite/get",
       authToken
     );
-    setFavoriteRecords(result.data);
-    console.log(result);
+    const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
+    setFavoriteRecords(sorted);
   };
 
   React.useEffect(() => {
     fetchData();
 
-    console.log("data");
+    
   }, [favoriteIsOpen]);
 
   return (

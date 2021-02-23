@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const auth = require("../Middleware/auth");
-const  Favorite  = require("../Models/Favorite");
+const Favorite = require("../Models/Favorite");
 
 //get favorite records
 
@@ -22,9 +22,11 @@ router.post("/add", auth, async (req, res) => {
       rating,
       genre,
       description,
+      isFavorite: "1"
     });
     const savedRecords = await newRecord.save();
     res.json(savedRecords);
+    
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

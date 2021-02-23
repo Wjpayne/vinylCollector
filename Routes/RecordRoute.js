@@ -2,18 +2,16 @@ const router = require("express").Router();
 const auth = require("../Middleware/auth");
 Record = require("../Models/Records");
 
-
 //get records
 
-router.get("/get", auth, async(req,res) =>{
-  const records = await Record.find({ userId: req.user});
-  res.json(records)
-})
+router.get("/get", auth, async (req, res) => {
+  const records = await Record.find({ userId: req.user });
+  res.json(records);
+});
 
 //add records
-router.post("/add", auth, async(req,res) =>{
+router.post("/add", auth, async (req, res) => {
   try {
-
     const { title, artist, rating, genre, description } = req.body;
 
     const newRecord = new Record({
@@ -24,16 +22,13 @@ router.post("/add", auth, async(req,res) =>{
       genre,
       description,
       
-      
-    })
+    });
     const savedRecords = await newRecord.save();
-    res.json(savedRecords)
-
+    res.json(savedRecords);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-})
-
+});
 
 //get records by id
 
@@ -62,7 +57,6 @@ router.route("/update/:id").post((req, res) => {
       records.rating = req.body.rating;
       records.genre = req.body.genre;
       records.description = req.body.description;
-      records.favorite = req.body.description;
 
       records
         .save()

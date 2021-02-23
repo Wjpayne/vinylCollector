@@ -66,7 +66,7 @@ const loginFormStyles = makeStyles((theme) => ({
 
 export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   const classes = loginFormStyles();
-  // const url = "http://localhost:5000/users/";
+  // const url = "http://localhost:5000";
   const history = useHistory();
 
   //set state for login
@@ -88,7 +88,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
 
     try {
       const loginUser = { email, password };
-      const loginRes = await axios.post("/users/login", loginUser, authToken);
+      const loginRes = await axios.post( "/users/login", loginUser, authToken);
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,

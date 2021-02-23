@@ -1,17 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import EditRecords from "./EditRecords";
 import AddRecord from "./AddRecord";
 import { authToken } from "../utils/AuthToken";
 import Favorites from "../Favorites/Favorites";
-import FavoriteButtonRecord from "../Favorites/FavoriteButton";
+import RecordCard from "./RecordCard";
+import NavBar from "../Pages/NavBar";
 
 const recordFormStyles = makeStyles((theme) => ({
   root: {
@@ -45,14 +42,14 @@ const recordFormStyles = makeStyles((theme) => ({
   },
 
   button: {
-    float: "left",
-    bottom: "-210px"
-  }
+    top: "220px",
+    left: "30px",
+  },
 }));
 
 export default function ShowRecords() {
   const classes = recordFormStyles();
-  const url = " http://localhost:5000/record";
+  // const url = " http://localhost:5000";
 
   //get userData state to use in useEffect
 
@@ -78,9 +75,68 @@ export default function ShowRecords() {
 
   const [userId, setUserId] = React.useState("");
 
-  //set state for favorite icon
+  //set Search state and seach functions
 
-  //functions to control state
+  const [search, setSearch] = React.useState("")
+
+  const [filter, setFilter] = React.useState([])
+
+  React.useEffect(() => {
+    setFilter(
+      newRecords.filter((element) =>
+        element.artist.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, newRecords]);
+
+
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+
+
+  // add favorite functions
+
+
+
+  const addFavorites = async (
+    _id,
+    title,
+    artist,
+    rating,
+    genre,
+    description,
+    isFavorite
+  ) => {
+    const favorites = {
+      userId: _id,
+      title,
+      artist,
+      rating,
+      genre,
+      description,
+      isFavorite,
+    };
+
+      await axios.post(
+      "/favorite/add",
+      favorites,
+      authToken
+    );
+
+ 
+  };
+
+  const deleteFavorite = async (title) => {
+    await axios.delete("/favorite/delete", {
+      data: { title: title },
+      authToken,
+    });
+  };
+
+  //functions to control state of modals
 
   const handleAddModalOpen = () => {
     handleAddModal(true);
@@ -97,11 +153,10 @@ export default function ShowRecords() {
   //fetch record data
 
   const fetchData = async () => {
-    const result = await axios.get(
-      "/record/get",
-      authToken
-    );
-    newRecordData(result.data);
+    const result = await axios.get("/record/get", authToken);
+
+    const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
+    newRecordData(sorted);
   };
 
   React.useEffect(() => {
@@ -115,12 +170,10 @@ export default function ShowRecords() {
       _id: _id,
     };
 
-    await axios
-      .delete("/record/" + _id, deleteRecords)
-      .then((result) => {
-        const refresh = newRecords.filter((result) => result._id !== _id);
-        newRecordData(refresh);
-      });
+    await axios.delete("/record/" + _id, deleteRecords).then((result) => {
+      const refresh = newRecords.filter((result) => result._id !== _id);
+      newRecordData(refresh);
+    });
   };
 
   //functions for controlling edit record state
@@ -133,8 +186,6 @@ export default function ShowRecords() {
     setGenre(genre);
     setDescription(description);
     handleEditModal(true);
-
-    console.log(title);
   };
 
   //functions for setting favorite state and color and post request to add favorite
@@ -142,6 +193,10 @@ export default function ShowRecords() {
   return (
     <div>
       {/* set props */}
+
+      <NavBar 
+      handleSearch = {handleSearch}
+      />
 
       <Favorites />
       <AddRecord
@@ -165,7 +220,7 @@ export default function ShowRecords() {
         editRatingState={setRating}
         editGenreState={setGenre}
         editDescriptionState={setDescription}
-        editUrl={url}
+        // editUrl={url}
         editFetchData={fetchData}
         editNewRecordData={newRecordData}
       />
@@ -177,76 +232,17 @@ export default function ShowRecords() {
       </Button>
 
       <div className={classes.cardsContainer}>
-        <Grid container spacing={10} style={{ padding: "24px" }}>
-          {newRecords.length > 0 &&
-            newRecords.map((element) => (
-              <Grid key={element._id} item xs={12} sm={6} md={4} lg={4} xl={2}>
-                <Card className={classes.root}>
-                  <CardContent className={classes.content}>
-                    <>
-                      <Button
-                        onClick={() =>
-                          editRecord(
-                            element._id,
-                            element.title,
-                            element.artist,
-                            element.rating,
-                            element.genre,
-                            element.description
-                          )
-                        }
-                        size="small"
-                        color="inherit"
-                        className={classes.button}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        onClick={() =>
-                          deleteRecord(
-                            element._id,
-                            element.title,
-                            element.artist,
-                            element.rating,
-                            element.genre,
-                            element.description
-                          )
-                        }
-                        size="small"
-                        color="inherit"
-                        className={classes.button}
-                      >
-                        Delete
-                      </Button>
-                      <FavoriteButtonRecord
-                        key={element._id}
-                        title={element.title}
-                        artist={element.artist}
-                        rating={element.rating}
-                        genre={element.genre}
-                        description={element.description}
-                      />
-                    </>
-                    <Typography gutterBottom variant="h6">
-                      {element.title}
-                    </Typography>
-                    <Typography variant="body2" color="inherit" component="p">
-                      Artist: {element.artist}
-                    </Typography>
-                    <Typography variant="body2" color="inherit" component="p">
-                      Label: {element.rating}
-                    </Typography>
-                    <Typography variant="body2" color="inherit" component="p">
-                      Genre: {element.genre}
-                    </Typography>
-                    <Typography variant="body2" color="inherit" component="p">
-                      Description: {element.description}
-                    </Typography>
-                  </CardContent>
-
-                  <CardActions></CardActions>
-                </Card>
-              </Grid>
+        <Grid container spacing={8} style={{ padding: 80 }} justify="center">
+          {filter.length > 0 &&
+            filter.map((element) => (
+              <RecordCard
+                key={element._id}
+                element={element}
+                editRecord={editRecord}
+                deleteRecord={deleteRecord}
+                addFavorites={addFavorites}
+                deleteFavorite={deleteFavorite}
+              />
             ))}
         </Grid>
       </div>

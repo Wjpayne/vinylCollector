@@ -9,7 +9,9 @@ const favoriteSchema = new Schema(
     artist: { type: String },
     rating: { type: String },
     genre: { type: String },
-    description: { type: String },
+    description: {type: String},
+    isFavorite: { type: String }
+    
   },
   {
     timestamps: true,

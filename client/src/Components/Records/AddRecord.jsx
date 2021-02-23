@@ -58,7 +58,7 @@ export default function AddRecord({
   refreshRecordData,
 }) {
   const classes = recordFormStyles();
-  // const url = "http://localhost:5000/record/add";
+  // const url = "http://localhost:5000";
 
   //set intial state
 
@@ -70,6 +70,7 @@ export default function AddRecord({
     rating: "",
     genre: "",
     description: "",
+    isFavorite: false
   };
 
   //set state for adding records
@@ -94,6 +95,8 @@ export default function AddRecord({
       genre: addRecord.genre,
       description: addRecord.description,
       
+      
+      
     };
 
     await axios
@@ -106,6 +109,7 @@ export default function AddRecord({
           rating: "",
           genre: "",
           description: "",
+          
         });
       });
 
@@ -113,7 +117,8 @@ export default function AddRecord({
 
     const fetchData = async () => {
       const result = await axios.get("/record/get", authToken);
-      refreshRecordData(result.data);
+      const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
+      refreshRecordData(sorted);
     };
 
     fetchData();
