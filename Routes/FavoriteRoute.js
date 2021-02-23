@@ -25,7 +25,7 @@ router.post("/add", auth, async (req, res) => {
       isFavorite: "1"
     });
     const savedRecords = await newRecord.save();
-    res.json(savedRecords);
+    res.json(savedRecords, {status: "success"});
     
   } catch (err) {
     res.status(500).json({ error: err.message });
