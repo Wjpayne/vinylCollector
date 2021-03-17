@@ -16,17 +16,24 @@ remove: {
 }
 }));
 
-export default function FavoriteButton( {title, favoriteRecords, setFavoriteRecords} ) {
+export default function FavoriteButton( {_id, favoriteRecords, setFavoriteRecords} ) {
 
   const url = "http://localhost:5000";
 
     const deleteFavorite = async () => {
         axios.delete(url + "/favorite/delete", {
-          data: { title: title },
+          data: { _id: _id },
           authToken,
-        }).then((result) => { const refresh = favoriteRecords.filter((result) => result.title !== title)
+        }).then((result) => { const refresh = favoriteRecords.filter((result) => result._id !== _id)
         setFavoriteRecords(refresh)
         })
+
+           await axios.post(
+      url + "/record/unfavorite/" + _id,
+      { favorite: "false" },
+      authToken
+    );
+    
       };
 
 

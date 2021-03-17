@@ -27,8 +27,7 @@ const recordFormStyles = makeStyles((theme) => ({
     backgroundColor: "black",
     color: "black",
     paddingTop: "100px",
-    height: "100vh"
-
+    height: "100vh",
   },
 
   addButton: {
@@ -83,10 +82,11 @@ export default function ShowRecords() {
 
   const [filter, setFilter] = React.useState([]);
 
-  //set state for favorite
+  //set state for favorite button
 
-  const [favorite, setFavorite] = React.useState([])
+  const [favorite, setFavorite] = React.useState(false);
 
+  //set state for filerting artist by name on render
 
   React.useEffect(() => {
     setFilter(
@@ -100,15 +100,52 @@ export default function ShowRecords() {
     setSearch(e.target.value);
   };
 
-  // add favorite functions
+  //fetch record data
 
+  const fetchData = async () => {
+    const result = await axios.get(url + "/record/get", authToken);
+
+    const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
+    newRecordData(sorted);
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, [favorite]);
+
+  // delete records
+
+  const deleteRecord = async (_id) => {
+    const deleteRecords = {
+      _id: _id,
+    };
+
+    await axios.delete(url + "/record/" + _id, deleteRecords);
+    const refresh = newRecords.filter((result) => result._id !== _id);
+    newRecordData(refresh);
+  };
+
+  //functions for controlling edit record state
+
+  const editRecord = (_id, title, artist, rating, genre, description) => {
+    setUserId(_id);
+    setTitle(title);
+    setArtist(artist);
+    setRating(rating);
+    setGenre(genre);
+    setDescription(description);
+    handleEditModal(true);
+  };
+
+  //functions for setting favorite state and color and post request to add favorite
   const addFavorites = async (
     _id,
     title,
     artist,
     rating,
     genre,
-    description
+    description,
+    isFavorite
   ) => {
     const favorites = {
       userId: _id,
@@ -117,17 +154,35 @@ export default function ShowRecords() {
       rating,
       genre,
       description,
+      isFavorite,
     };
 
     await axios.post(url + "/favorite/add", favorites, authToken);
-    
+
+    await axios.post(
+      url + "/record/favorite/" + _id,
+      { favorite: "true" },
+      authToken
+    );
+
+    setFavorite(true);
   };
 
-  const deleteFavorite = async (title) => {
-    await axios.delete(url + "/favorite/delete", {
-      data: { title: title },
-      authToken,
-    });
+  const deleteFavorite = async (_id) => {
+    await axios.delete(
+      url + "/favorite/delete",
+      {
+        data: { _id: _id },
+      },
+      authToken
+    );
+
+    await axios.post(
+      url + "/record/unfavorite/" + _id,
+      { favorite: "false" },
+      authToken
+    );
+    setFavorite(false);
   };
 
   //functions to control state of modals
@@ -144,53 +199,13 @@ export default function ShowRecords() {
     handleEditModal();
   };
 
-  //fetch record data
-
-  const fetchData = async () => {
-    const result = await axios.get(url + "/record/get", authToken);
-
-    const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
-    newRecordData(sorted);
-  };
-
-  React.useEffect(() => {
-    fetchData();
-  }, []);
-
-  // delete records
-
-  const deleteRecord = async (_id) => {
-    const deleteRecords = {
-      _id: _id,
-    };
-
-    await axios.delete(url + "/record/" + _id, deleteRecords).then((result) => {
-      const refresh = newRecords.filter((result) => result._id !== _id);
-      newRecordData(refresh);
-    });
-  };
-
-  //functions for controlling edit record state
-
-  const editRecord = (_id, title, artist, rating, genre, description) => {
-    setUserId(_id);
-    setTitle(title);
-    setArtist(artist);
-    setRating(rating);
-    setGenre(genre);
-    setDescription(description);
-    handleEditModal(true);
-  };
-
-  //functions for setting favorite state and color and post request to add favorite
-
   return (
     <div>
       {/* set props */}
 
       <NavBar handleSearch={handleSearch} />
 
-      <Favorites />
+      <Favorites  />
       <AddRecord
         isAddModalOpen={addModalOpen}
         handleIsAddModalClose={handleCloseAddModal}

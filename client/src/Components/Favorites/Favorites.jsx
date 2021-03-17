@@ -77,7 +77,7 @@ const favoriteStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
+export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen, deleteFavorite }) {
   const classes = favoriteStyles();
 
   const url = "http://localhost:5000";
@@ -153,9 +153,10 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
                     <CardContent className={classes.card}>
                       <>
                         <DeleteFavoriteButton
-                          title={element.title}
+                          _id ={element._id}
                           favoriteRecords={favoriteRecords}
                           setFavoriteRecords={setFavoriteRecords}
+                          deleteFavorite = {deleteFavorite}
                         />
                       </>
 
