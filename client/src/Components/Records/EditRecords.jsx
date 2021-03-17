@@ -64,7 +64,7 @@ export default function EditRecords({
 }) {
   const classes = editFormStyles();
 
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
 
   //function to control submit/edit records
 
@@ -79,11 +79,11 @@ export default function EditRecords({
       description: editDescription,
     };
     await axios
-      .post("/record/update/" + editUserId, editUser, authToken)
+      .post(url + "/record/update/" + editUserId, editUser, authToken)
       .then((res) => console.log(res.data));
 
     const fetchData = async () => {
-      const result = await axios.get("/record/get", {
+      const result = await axios.get(url + "/record/get", {
         headers: { "x-auth-token": localStorage.getItem("auth-token")},
       });
       editNewRecordData(result.data);

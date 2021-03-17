@@ -58,7 +58,7 @@ const registerFormStyles = makeStyles((theme) => ({
 export default function Register({ registerFormOpen, closeRegisterForm }) {
   const classes = registerFormStyles();
 
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
 
   //set State for register form
   
@@ -80,7 +80,7 @@ export default function Register({ registerFormOpen, closeRegisterForm }) {
 
     try {
       const newUser = { email, password, passwordCheck, displayName };
-      await axios.post("/users/register", newUser);
+      await axios.post(url + "/users/register", newUser);
       const loginRes = await axios.post("/users/login", {
         email,
         password,

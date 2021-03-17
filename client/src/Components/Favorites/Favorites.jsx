@@ -80,7 +80,7 @@ const favoriteStyles = makeStyles((theme) => ({
 export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
   const classes = favoriteStyles();
 
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
 
   //state for favorites
 
@@ -97,7 +97,7 @@ export default function Favorites({ drawerClose, favoriteIsOpen, handleOpen }) {
 
   const fetchData = async () => {
     const result = await axios.get(
-      "/favorite/get",
+      url + "/favorite/get",
       authToken
     );
     const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));

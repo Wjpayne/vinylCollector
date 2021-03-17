@@ -14,7 +14,7 @@ function App() {
 
   // see if user is logged in already, if not set a token and userData
 
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
 
   React.useEffect(() => {
     const checkLoggedIn = async () => {
@@ -24,14 +24,14 @@ function App() {
         token = "";
       }
       const tokenRes = await axios.post( 
-        "/users/tokenIsValid",
+        url +  "/users/tokenIsValid",
         null,
         {
           headers: { "x-auth-token": token },
         }
       );
       if (tokenRes.data) {
-        const userRes = await axios.get("/users/get", {
+        const userRes = await axios.get(url + "/users/get", {
           headers: { "x-auth-token": token },
         });
         setUserData({

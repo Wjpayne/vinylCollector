@@ -1,7 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Divider, Grid, Hidden, makeStyles, Paper } from "@material-ui/core";
-
 import BandcampPlayer from "react-bandcamp";
 
 const featuredStyles = makeStyles((theme) => ({

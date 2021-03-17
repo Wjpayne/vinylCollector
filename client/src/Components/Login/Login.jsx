@@ -61,12 +61,12 @@ const loginFormStyles = makeStyles((theme) => ({
   registerButton: {
     left: "50%",
     transform: "translateX(-50%)",
-  }
+  },
 }));
 
 export default function LoginForm({ isLoginOpen, handleCloseModal }) {
   const classes = loginFormStyles();
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
   const history = useHistory();
 
   //set state for login
@@ -88,7 +88,11 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
 
     try {
       const loginUser = { email, password };
-      const loginRes = await axios.post( "/users/login", loginUser, authToken);
+      const loginRes = await axios.post(
+        url + "/users/login",
+        loginUser,
+        authToken
+      );
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
@@ -99,6 +103,7 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
+    
   };
 
   const handleRegisterOpen = () => {
@@ -181,22 +186,24 @@ export default function LoginForm({ isLoginOpen, handleCloseModal }) {
               >
                 Sign In
               </Button>
-              <p>Sign in with <strong>Email:</strong> user@user.com <strong>Password: </strong> password to see a demo</p>
-             
-                {/* <Grid item xs>
+              <p>
+                Sign in with <strong>Email:</strong> user@user.com{" "}
+                <strong>Password: </strong> password to see a demo
+              </p>
+
+              {/* <Grid item xs>
                   <Button className={classes.signInButton}>
                     Forgot password?
                   </Button>
                 </Grid> */}
-                
-                  <Button
-                    className={classes.registerButton}
-                    onClick={handleRegisterOpen}
-                  >
-                    {"Register"}
-                  </Button>
-                
-              
+
+              <Button
+                className={classes.registerButton}
+                onClick={handleRegisterOpen}
+              >
+                {"Register"}
+              </Button>
+
               {error && (
                 <ErrorNotice
                   showError={error}

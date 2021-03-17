@@ -27,6 +27,8 @@ const recordFormStyles = makeStyles((theme) => ({
     backgroundColor: "black",
     color: "black",
     paddingTop: "100px",
+    height: "100vh"
+
   },
 
   addButton: {
@@ -49,7 +51,7 @@ const recordFormStyles = makeStyles((theme) => ({
 
 export default function ShowRecords() {
   const classes = recordFormStyles();
-  // const url = " http://localhost:5000";
+  const url = " http://localhost:5000";
 
   //get userData state to use in useEffect
 
@@ -77,9 +79,14 @@ export default function ShowRecords() {
 
   //set Search state and seach functions
 
-  const [search, setSearch] = React.useState("")
+  const [search, setSearch] = React.useState("");
 
-  const [filter, setFilter] = React.useState([])
+  const [filter, setFilter] = React.useState([]);
+
+  //set state for favorite
+
+  const [favorite, setFavorite] = React.useState([])
+
 
   React.useEffect(() => {
     setFilter(
@@ -89,17 +96,11 @@ export default function ShowRecords() {
     );
   }, [search, newRecords]);
 
-
-
   const handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
-
-
+    setSearch(e.target.value);
+  };
 
   // add favorite functions
-
-
 
   const addFavorites = async (
     _id,
@@ -107,8 +108,7 @@ export default function ShowRecords() {
     artist,
     rating,
     genre,
-    description,
-    isFavorite
+    description
   ) => {
     const favorites = {
       userId: _id,
@@ -117,20 +117,14 @@ export default function ShowRecords() {
       rating,
       genre,
       description,
-      isFavorite,
     };
 
-      await axios.post(
-      "/favorite/add",
-      favorites,
-      authToken
-    );
-
- 
+    await axios.post(url + "/favorite/add", favorites, authToken);
+    
   };
 
   const deleteFavorite = async (title) => {
-    await axios.delete("/favorite/delete", {
+    await axios.delete(url + "/favorite/delete", {
       data: { title: title },
       authToken,
     });
@@ -153,7 +147,7 @@ export default function ShowRecords() {
   //fetch record data
 
   const fetchData = async () => {
-    const result = await axios.get("/record/get", authToken);
+    const result = await axios.get(url + "/record/get", authToken);
 
     const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
     newRecordData(sorted);
@@ -170,7 +164,7 @@ export default function ShowRecords() {
       _id: _id,
     };
 
-    await axios.delete("/record/" + _id, deleteRecords).then((result) => {
+    await axios.delete(url + "/record/" + _id, deleteRecords).then((result) => {
       const refresh = newRecords.filter((result) => result._id !== _id);
       newRecordData(refresh);
     });
@@ -194,9 +188,7 @@ export default function ShowRecords() {
     <div>
       {/* set props */}
 
-      <NavBar 
-      handleSearch = {handleSearch}
-      />
+      <NavBar handleSearch={handleSearch} />
 
       <Favorites />
       <AddRecord

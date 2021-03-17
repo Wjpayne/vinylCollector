@@ -9,7 +9,7 @@ router.get("/get", auth, async (req, res) => {
   res.json(favorite);
 });
 
-//add favorite records by using the update method from edit records
+//add favorite records
 
 router.post("/add", auth, async (req, res) => {
   try {
@@ -17,23 +17,21 @@ router.post("/add", auth, async (req, res) => {
 
     const newRecord = new Favorite({
       userId: req.user,
+      favorite: "true",
       title,
       artist,
       rating,
       genre,
       description,
-      isFavorite: "1"
     });
-    const savedRecords = await newRecord.save();
-    res.json(savedRecords, {status: "success"});
-    
+    await newRecord.save();
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 router.route("/delete").delete((req, res) => {
-  Favorite.deleteOne({ title: req.body.title })
+  Favorite.deleteOne({ favoriteTitle: req.body.favoriteTitle })
     .then(() => res.json("Record deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });

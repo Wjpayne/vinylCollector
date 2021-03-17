@@ -6,7 +6,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const recordCardStyles = makeStyles((theme) => ({
   root: {
     height: "280px",
@@ -51,17 +50,14 @@ const recordCardStyles = makeStyles((theme) => ({
 
 export default function RecordCard(props) {
   const classes = recordCardStyles();
-  const {
-    element,
-    editRecord,
-    deleteRecord,
-    addFavorites,
-  } = props;
+  const { element, editRecord, deleteRecord, addFavorites } = props;
 
   const { _id, title, artist, rating, genre, description } = element;
 
+
+
   return (
-    <Grid key={element._id} item xs={12} sm={8} md={5} lg={4} xl={2} >
+    <Grid key={element._id} item xs={12} sm={8} md={5} lg={4} xl={2}>
       <Card className={classes.root}>
         <>
           <Button
@@ -72,6 +68,7 @@ export default function RecordCard(props) {
           >
             ADD FAVORITE
           </Button>
+
           <Button
             onClick={() =>
               editRecord(_id, title, artist, rating, genre, description)

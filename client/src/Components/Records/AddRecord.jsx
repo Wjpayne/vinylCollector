@@ -17,6 +17,7 @@ const recordFormStyles = makeStyles((theme) => ({
     backgroundColor: "black",
     color: "black",
     paddingTop: "100px",
+    
   },
 
   addButton: {
@@ -58,7 +59,7 @@ export default function AddRecord({
   refreshRecordData,
 }) {
   const classes = recordFormStyles();
-  // const url = "http://localhost:5000";
+  const url = "http://localhost:5000";
 
   //set intial state
 
@@ -100,7 +101,7 @@ export default function AddRecord({
     };
 
     await axios
-      .post("/record/add", records, authToken)
+      .post(url + "/record/add", records, authToken)
       .then((response) => {
         addRecordData({
           userId: "",
@@ -116,7 +117,7 @@ export default function AddRecord({
     //refresh data
 
     const fetchData = async () => {
-      const result = await axios.get("/record/get", authToken);
+      const result = await axios.get(url + "/record/get", authToken);
       const sorted = result.data.sort((a, b) => a.artist.localeCompare(b.artist));
       refreshRecordData(sorted);
     };
@@ -125,7 +126,7 @@ export default function AddRecord({
   };
 
   return (
-    <div>
+    <div style = {{backgroundColor: "black"}}>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
